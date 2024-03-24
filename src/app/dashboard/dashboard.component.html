@@ -1,25 +1,14 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <div class="dashboard-container">
-    <a routerLink="/paises" (click)="verificarRol()"><i class="fa-solid fa-earth-americas symbol"></i>Paises<i class="fa-solid fa-arrows-rotate sym"></i></a>
-    <a routerLink="/regiones" (click)="verificarRol()"><i class="fa-solid fa-mountain symbol"></i>Regiones<i class="fa-solid fa-arrow-right-long sym"></i></a>
-    <a routerLink="/ciudades" (click)="verificarRol()"><i class="fa-solid fa-city symbol"></i>Ciudades<i class="fa-solid fa-repeat sym"></i></a>
-    <a routerLink="/distritos" (click)="verificarRol()"><i class="fa-solid fa-location-dot symbol"></i>Distritos</a>
-    <a routerLink="/barrios" (click)="verificarRol()"><i class="fa-solid fa-arrow-right-to-city symbol"></i>Barrios</a>
-    <a routerLink="/calles" (click)="verificarRol()"><i class="fa-solid fa-signs-post symbol"></i>Calles</a>
-    <a routerLink="/edificios" (click)="verificarRol()"><i class="fa-solid fa-building symbol"></i>Edificios</a>
-    <a routerLink="/apartamentos" (click)="verificarRol()"><i class="fa-solid fa-building-circle-check symbol"></i>Apartamentos</a>
-    <a routerLink="/contrato-alquiler" (click)="verificarRol()"><i class="fa-solid fa-file-signature symbol"></i>Contratos</a>
+
     <a routerLink="/inquilinos" (click)="verificarRol()"><i class="fa-solid fa-building-user symbol"></i>Inquilinos</a>
 
     <div class="flex-container" *ngIf="rol_user == '1'">
         <div class="divider" *ngIf="rol_user == '1'"></div>
         <a routerLink="/home" class="home-link" *ngIf="rol_user == '1'" (click)="verificarRol()"><i class="fa-solid fa-users"></i>Usuarios</a>
-        <a routerLink="/roles" class="home-link rol" *ngIf="rol_user == '1'"><i class="fa-solid fa-address-book"></i>Roles</a>
-        <a routerLink="/logs" class="home-link rol" *ngIf="rol_user == '1'"><i class="fa-solid fa-file-lines"></i>Logs</a>
+
     </div>
-
-
 
     <button class="logout" (click)="logout()"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>    
 
