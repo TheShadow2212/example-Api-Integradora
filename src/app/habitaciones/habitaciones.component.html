@@ -1,0 +1,18 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+<div class="container">
+    <div class="title-container">
+        <p class="open-sans-font">Habitaciones</p>
+        <select [(ngModel)]="estado">
+            <option value="Todas">Todas</option>
+            <option value="Activa">Activas</option>
+            <option value="Desactiva">Desactivadas</option>
+        </select>
+    </div>
+    <p>{{estado}}</p>
+    <div *ngFor="let habitacion of habitacionesFiltradas()">
+        <p>{{habitacion.nombre}}</p>
+      </div>
+</div>

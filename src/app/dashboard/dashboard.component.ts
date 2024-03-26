@@ -25,6 +25,9 @@ export class DashboardComponent {
   @Output() rol = new EventEmitter<void>();
   @Output() logoutEvent = new EventEmitter<void>();
   
+  isCurrentRoute(route: string): boolean {
+    return this.router.url === route;
+  }
   verificarRol(): void {
     this.rol.emit();
   }

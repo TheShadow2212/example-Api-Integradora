@@ -1,9 +1,16 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 <div class="container">
-    <div *ngIf="authStatus == true" class="dashboard-container2">
+    <div *ngIf="isNotLoginPage()" class="dashboard-container2">
         <app-dashboard (logoutEvent)="logout()" (rol)="ngOnInit()" ></app-dashboard>
     </div>
 
     <div class="menu-container" >
+        <div *ngIf="isNotLoginPage()" class="dashboard-container1">
+            <img draggable="false" class="img-icon" src="../assets/the-server-4.png" alt="Imagen representativa del logo de la empresa">
+            <p class="open-sans-400">Room Guardian</p>
+        </div>
         <router-outlet></router-outlet>
     </div>
 </div>

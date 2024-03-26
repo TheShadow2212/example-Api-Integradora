@@ -39,6 +39,10 @@ export class AppComponent {
     );
   }
 
+  isNotLoginPage(): boolean {
+    return this.router.url !== '/login';
+  }
+
   ngOnInit() {
     const rol = localStorage.getItem('role_id');
     const token = localStorage.getItem('token');
@@ -55,7 +59,7 @@ export class AppComponent {
         this.authMessage = 'Rol no definido';
         this.authStatus = false;
         this.router.navigate(['/login']);
-    }
+      }
     localStorage.setItem('auth', this.authStatus.toString());
     console.log(this.authStatus);
     console.log(this.authMessage);

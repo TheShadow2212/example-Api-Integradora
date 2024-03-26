@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     height: 100vh;
-    background-color: #f0f0f0;
+    background-color: #F8FAFB;
     font-family: Arial, sans-serif;
     max-width: 100%; /* Ancho máximo de la tabla */
     overflow-x: auto; /* Permitir el desplazamiento horizontal */

@@ -2,14 +2,18 @@
 
 <div class="dashboard-container">
 
-    <a routerLink="/inquilinos" (click)="verificarRol()"><i class="fa-solid fa-building-user symbol"></i>Inquilinos</a>
-
-    <div class="flex-container" *ngIf="rol_user == '1'">
-        <div class="divider" *ngIf="rol_user == '1'"></div>
-        <a routerLink="/home" class="home-link" *ngIf="rol_user == '1'" (click)="verificarRol()"><i class="fa-solid fa-users"></i>Usuarios</a>
-
+    <div class="flex-container">    
+<a [class.active]="isCurrentRoute('/home')" routerLink="/home" class="bottom" (click)="verificarRol()"><i class="fa-solid fa-seedling "></i></a>
+<a [class.active]="isCurrentRoute('/habitaciones')" routerLink="/habitaciones" class="top" (click)="verificarRol()"><i class="fa-solid fa-building-lock"></i></a>
+<a [class.active]="isCurrentRoute('/inquilinos')" routerLink="/inquilinos" class="top" (click)="verificarRol()"><i class="fa-solid fa-id-card"></i></a>
     </div>
 
-    <button class="logout" (click)="logout()"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>    
 
+    <div class="flex-container" *ngIf="rol_user == '1'">
+    <a [class.active]="isCurrentRoute('/users')" routerLink="/users" class="top" *ngIf="rol_user == '1'" (click)="verificarRol()"><i class="fa-solid fa-users"></i></a>
+    </div>
+
+    <div class="log-container">
+        <button class="logout" (click)="logout()"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>    
+    </div>
 </div>

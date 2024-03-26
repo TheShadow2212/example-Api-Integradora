@@ -9,9 +9,36 @@
 
 .dashboard-container2 {
   height: 100%; /* Establece la altura automática para que se ajuste al contenido */
+
+}
+
+.dashboard-container1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 8.5%;
+  background-color: #FFFFFF;
+}
+
+.open-sans-400{
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  pointer-events: none;
+  font-size: 30px;
+  color: #2FA9DF;
+  font-style: normal;
+  margin-right: 3%;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+
+.img-icon{
+  width: 50px;
+  height: 50px;
 }
 
 .menu-container {
   width: 100%;
-  flex-grow: 1; /* Permite que este contenedor crezca para ocupar el espacio restante */
 }
