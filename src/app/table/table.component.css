@@ -1,7 +1,7 @@
 .container {
     display: flex;
     justify-content: center;
-    height: 100vh;
+    height: 91.5%;
     background-color: #F8FAFB;
     font-family: Arial, sans-serif;
     max-width: 100%; /* Ancho máximo de la tabla */
