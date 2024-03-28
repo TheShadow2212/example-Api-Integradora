@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class UserComponent implements OnInit {
   usuario: User;
+  userId: number;
 
   constructor(private usuarioService: UsuarioService) { }
 
@@ -21,7 +22,7 @@ export class UserComponent implements OnInit {
   }
 
   obtenerUsuario() {
-    this.usuarioService.obtenerElemento(1).subscribe(
+    this.usuarioService.obtenerElemento().subscribe(
       data => {
         this.usuario = data;
         console.log(this.usuario);

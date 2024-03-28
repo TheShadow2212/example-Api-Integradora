@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Objeto } from '../Interfaces/objeto';
 import { environment } from '../../../environments/environment';
 import { User } from '../Interfaces/user';
+import { HttpHeaders } from '@angular/common/http';
 
 
 @Injectable({
@@ -19,7 +20,9 @@ export class UsuarioService {
     return this.http.get<Objeto[]>(this.apiUrl);
   }
 
-  obtenerElemento(id: number): Observable<User> {
-    return this.http.get<User>(`${this.apiUrl_detail}/${id}`);
+  obtenerElemento(): Observable<User> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<User>(`${this.apiUrl_detail}`, { headers: headers });
   }
 }
