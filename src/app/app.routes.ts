@@ -6,6 +6,8 @@ export const routes: Routes = [
     { path: 'home', loadComponent:()=>import('./hub/hub.component').then(m=>m.HubComponent),canActivate: [authGuard]},
     { path: 'habitaciones', loadComponent:()=>import('./habitaciones/habitaciones.component').then(m=>m.HabitacionesComponent),canActivate: [authGuard]},
     { path: 'users', loadComponent:()=>import('./home/home.component').then(m=>m.HomeComponent), canActivate: [authGuard]},
+    { path: 'user', loadComponent:()=>import('./user/user.component').then(m=>m.UserComponent), canActivate: [authGuard]},
+
     { path: 'register', loadComponent:()=>import('./register-user/register-user.component').then(m=>m.RegisterUserComponent)},
     { path: 'inquilinos', loadComponent:()=>import('./inquilinos/inquilinos.component').then(m=>m.InquilinosComponent), canActivate: [authGuard]},
     { path: 'inquilinos/create', loadComponent:()=>import('./inquilino-create-form/inquilino-create-form.component').then(m=>m.InquilinoCreateFormComponent), canActivate: [authGuard]},

@@ -14,6 +14,7 @@ import { CrudService } from '../Core/Services/crud.service';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
+
 export class LoginComponent {
   code = new FormControl('', [Validators.required, Validators.minLength(6)]);
   authCode: string = '';
@@ -81,7 +82,7 @@ export class LoginComponent {
       localStorage.setItem('token', this.token);
       localStorage.setItem('role_id', this.role_id.toString());
       setTimeout(() => {
-        this.router.navigate(['/inquilinos']);
+        this.router.navigate(['/habitaciones']);
         this.crud.emitLoginSuccessful();
       }, 1500);
     } else {

@@ -1,37 +1,89 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HabitacionesService } from '../Core/Services/habitaciones.service';
+import { ConfirmacionEliminacionComponent } from '../confirmacion-eliminacion/confirmacion-eliminacion.component';
+import { Habitacion } from '../Core/Interfaces/habitacion';
+import { CrudService } from '../Core/Services/crud.service';
 
 @Component({
   selector: 'app-habitaciones',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,ConfirmacionEliminacionComponent],
   templateUrl: './habitaciones.component.html',
   styleUrl: './habitaciones.component.css'
 })
-export class HabitacionesComponent {
-  estado= 'Todas';
 
-  habitaciones = [
-    { numero: 1, nombre: 'Habitación 1', status: 'Activa' },
-    { numero: 2, nombre: 'Habitación 2', status: 'Desactiva' },
-    { numero: 3, nombre: 'Habitación 3', status: 'Activa' },
-    { numero: 4, nombre: 'Habitación 4', status: 'Desactiva' },
-    { numero: 5, nombre: 'Habitación 5', status: 'Activa'},
-    { numero: 6, nombre: 'Habitación 6', status: 'Desactiva' }
-  ];
+export class HabitacionesComponent implements OnInit{
+ eliminar = new EventEmitter<number>();
+
+  constructor(private habitacionSerive : HabitacionesService, private crud: CrudService) { }
+  estado= 'Todas';
+  mostrarConfirmacion: boolean = false;
+  idElemento: number = 0;
+
+  habitaciones: Habitacion[] = [];
+
+  ngOnInit(): void {
+    this.obtenerDatos();
+  }
+
+  obtenerDatos() {
+    this.habitacionSerive.obtenerElemento().subscribe(
+      data => {
+        this.habitaciones = data;
+      },
+      error => {
+        console.error('Error al obtener elementos', error);
+      }
+    );
+  }
+
+  eliminarElemento(decision: boolean) {
+    if (decision) {
+      this.emitirEliminar(this.idElemento);
+      this.mostrarConfirmacion = false;
+    }
+    else {
+      this.mostrarConfirmacion = false;
+    }
+
+  }
+
+  emitirAviso(id: number) {
+    this.mostrarConfirmacion = true;
+    this.idElemento = id;
+  }
+
+  emitirEliminar(id: number) {
+    this.crud.eliminar('/habitaciones/', id).subscribe(
+      data => {
+        // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        // this.router.onSameUrlNavigation = 'reload';
+        // this.router.navigate([this.router.url]);
+      },
+      error => {
+        console.error('Error al eliminar elemento', error);
+      }
+    );
+  }
 
    habitacionesFiltradas() {
     if (this.estado === 'Activa') {
       return this.habitaciones.filter(h => h.status === 'Activa');
-      console.log('Activas');
     } else if (this.estado === 'Desactiva') {
       return this.habitaciones.filter(h => h.status === 'Desactiva');
-      console.log('Desactivas');
     } else {
       return this.habitaciones;
-      console.log('Todas');
     }
+  }
+
+  addRoom(){
+    console.log('Agregando habitacion');
+  }
+
+  detailRoom(id: number){
+    console.log('Detalle de habitacion' + id);
   }
 
 }

@@ -1,13 +1,38 @@
+:host {
+    font-family: "Open Sans", sans-serif;
+}
+
 .container{
     width: 100%;
+    display: flex;
     height: 91.5%;
-    padding: 70px;
     background-color: #F8FAFB;
+    padding-left: 70px;
+    padding-top: 40px;
 }
+
+.rooms-container{
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    width: 50%;
+    height: 100%;
+}
+
+.activities-container{
+    display: flex;
+    align-items: center;
+    overflow: visible;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+}
+
 .title-container{
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-left: 40px;
 }
 
 .open-sans-font {
@@ -20,3 +45,182 @@
       "wdth" 100;
 }
 
+.cards-container {
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    overflow: visible;
+    margin-top: 20px;
+    margin-left: 20px;
+    
+}
+
+.content-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.alerts-container {
+    display: flex;
+    width: 90%;
+    height: 500px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    padding: 10px;
+    background-color: #ffffff;
+    margin-top: 20px;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+}
+
+.add-element{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    height: 25px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 200;
+    width: 80%;
+    background-color: #4D84FE;
+    color: white;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s, transform 0.3s,font-size 0.3s,margin-bottom 0.3s,height 0.3s,border-radius 0.3s;
+}
+
+.add-element:hover {
+    background-color: rgb(53, 104, 224);
+    transform: scale(1.02);
+    margin-bottom: 5px;
+    height: 27px;
+    border-radius: 15px;
+    font-size: 16px;
+    color: white;
+}
+
+.select{
+    display: flex;
+    align-items: center;
+    width: 100px;
+    margin-top: 6px;
+    height: 30px;
+    margin-left: 20px;
+}
+
+
+.habitacion-card {
+    background-color: #FFFFFF;
+    padding: 20px;
+    margin-left: 20px;
+    cursor: pointer;
+    border-radius: 6px;
+    width: 270px;
+    max-height: 170px;
+    margin-bottom: 20px;
+    position: relative;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.05); 
+    transition: transform 0.3s, color 0.3s, background-color 0.1s; 
+    flex-shrink: 0;
+}
+
+.habitacion-card:hover {
+    background-color: #4D83FF;
+    transform: scale(1.01);
+    color: white; 
+    box-shadow: 0px 0px 30px rgba(0, 0, 139, 0.5); 
+}
+
+.habitacion-id {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.habitacion-nombre {
+    text-align: start;
+    font-weight: 500;
+    margin-top: 20px ;
+}
+
+.habitacion-status {
+    text-align: start;
+    font-weight: 100;
+    margin: 15px;
+    margin-bottom: 20px;
+}
+.habitacion-card:hover .btn-container {
+    height: 25px;
+}
+.detalle-btn, .delete-btn {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.habitacion-card:hover .detalle-btn, .habitacion-card:hover .delete-btn {
+    opacity: 1;
+}
+.btn-container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 0; 
+    overflow: hidden; 
+    transition: height 0.3s;
+    overflow: visible;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+}
+.detalle-btn {
+    width: 85%;
+    height: 100%;
+    border: none;
+    color: white;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: #709BFF;
+    cursor: pointer;
+
+}
+
+.delete-btn {
+    width: 15%;
+    border: none;
+    color: white;
+    border-top-right-radius:10px ;
+    border-bottom-right-radius: 10px;
+    background-color: #709BFF;
+    cursor: pointer;
+
+}
+
+.detalle-btn, .delete-btn {
+    opacity: 0;
+    transition: opacity 0.2s, transform 0.5s, background-color 0.3s, margin 0.5s;
+}
+
+.habitacion-card:hover .detalle-btn, .habitacion-card:hover .delete-btn {
+    opacity: 1;
+}
+
+.detalle-btn:hover {
+    transform: scale(1.1);
+    background-color: #87B0FA; 
+    margin-right: 10px;
+
+}
+
+.delete-btn:hover {
+    transform: scale(1.1);
+    background-color: #a84343; 
+    margin-left: 1px;
+
+}
+
+.delete-btn i {
+    transition: transform 0.2s; 
+}
+
+.delete-btn:hover i {
+    transform: scale(1.2); 
+}

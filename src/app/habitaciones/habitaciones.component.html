@@ -1,18 +1,35 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <div class="container">
-    <div class="title-container">
-        <p class="open-sans-font">Habitaciones</p>
-        <select [(ngModel)]="estado">
-            <option value="Todas">Todas</option>
-            <option value="Activa">Activas</option>
-            <option value="Desactiva">Desactivadas</option>
-        </select>
+    <div class="rooms-container">
+        <div class="title-container">
+            <p class="open-sans-font title" >Habitaciones</p>
+            <select [(ngModel)]="estado" class="select">
+                <option value="Todas">Todas</option>
+                <option value="Activa">Activas</option>
+                <option value="Desactiva">Desactivadas</option>
+            </select>
+        </div>
+        <div class="cards-container"> 
+            <div *ngFor="let habitacion of habitacionesFiltradas()" class="habitacion-card">
+                <p class="habitacion-id">{{habitacion.id}}</p>
+                <p class="habitacion-nombre">{{habitacion.nombre}}</p>
+                <p class="habitacion-status">{{habitacion.status}}</p>
+                <div class="btn-container">
+                    <button class="detalle-btn" (click)="detailRoom(habitacion.id)">Ir a detalle</button>
+                    <button class="delete-btn" (click)="emitirAviso(habitacion.id)"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+        </div>
     </div>
-    <p>{{estado}}</p>
-    <div *ngFor="let habitacion of habitacionesFiltradas()">
-        <p>{{habitacion.nombre}}</p>
-      </div>
+    <div class="activities-container">
+        <button class="add-element" (click)="addRoom()">Agregar una habitacion</button>
+        <div class="alerts-container">Se recibiran objetos notificacion de tipo critico de mongo</div>
+    </div>
 </div>
+
+
+<app-confirmacion-eliminacion *ngIf="mostrarConfirmacion"  (confirmado)="eliminarElemento($event)"></app-confirmacion-eliminacion>

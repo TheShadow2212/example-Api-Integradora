@@ -28,8 +28,8 @@ export class TableComponent implements OnInit{
   @Input() deleteRoute: string = '';
   @Input() backRoute: string = '';
   @Output() editar = new EventEmitter<number>();
-  @Output() eliminar = new EventEmitter<number>();
   @Output() agregar = new EventEmitter();
+  @Output() eliminar = new EventEmitter<number>();
   @Output() elementoEliminado = new EventEmitter<void>();
 
   constructor(private router: Router, private crud: CrudService) { }
