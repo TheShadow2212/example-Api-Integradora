@@ -55,7 +55,7 @@ export class HabitacionesUpdateFormComponent {
       this.crud.updateHabitacion(nombre, status, this.idString).subscribe({
         next: (data) => {
           console.log(data);
-          this.router.navigate(['/habitaciones']);
+          this.router.navigate(['/habitaciones/habitacion', this.idString]);
         },
         error: error => {
           console.log(error);

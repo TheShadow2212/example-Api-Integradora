@@ -21,7 +21,7 @@
                 <p class="habitacion-status">{{habitacion.status}}</p>
                 <div class="btn-container">
                     <button class="detalle-btn" (click)="detailRoom(habitacion.id)">Ir a detalle</button>
-                    <button class="delete-btn" (click)="emitirAviso(habitacion.id)"><i class="fa-solid fa-trash"></i></button>
+                    <button class="delete-btn" (click)="emitirAviso(habitacion.id); $event.stopPropagation()"><i class="fa-solid fa-trash"></i></button>
                 </div>
             </div>
         </div>
