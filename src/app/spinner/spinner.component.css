@@ -13,13 +13,18 @@
   
 
 .spinner {
-    border: 14px solid #f3f3f3;
-    border-top: 14px solid #8DAFFE;
+    border: 5px solid rgba(54, 54, 54, 0.1);
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    animation: spin 2s linear infinite;
-}   
+    border-left-color: #09f;
+    
+    animation: spin 1s linear infinite;
+    
+    }
+
+    
+    
 
 @keyframes spin {
     0% {
