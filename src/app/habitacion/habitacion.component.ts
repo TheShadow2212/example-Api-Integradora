@@ -19,7 +19,7 @@ export class HabitacionComponent {
   id: string;
   habitacion: Habitacion;
 
-    constructor(private habitacionSerive : HabitacionesService, private route: ActivatedRoute) { }
+    constructor(private habitacionSerive : HabitacionesService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id')!;
@@ -39,6 +39,6 @@ export class HabitacionComponent {
   }
 
   modificarHabitacion() {
-    console.log(`Se modificará la habitación con id ${this.habitacion.id}`);
+    this.router.navigate(['/habitacion/update', this.id]);
   }
 }

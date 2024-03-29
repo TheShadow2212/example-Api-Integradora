@@ -8,28 +8,47 @@ import { CrudService } from '../Core/Services/crud.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-habitaciones-create-form',
+  selector: 'app-habitaciones-update-form',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule, RouterLink],
-  templateUrl: './habitaciones-create-form.component.html',
-  styleUrl: './habitaciones-create-form.component.css'
+  templateUrl: './habitaciones-update-form.component.html',
+  styleUrl: './habitaciones-update-form.component.css'
 })
-export class HabitacionesCreateFormComponent {
+export class HabitacionesUpdateFormComponent {
   status = ['Activa', 'Desactiva'];
+  habitacion: any;
   habitacionForm = new FormGroup({
     nombre: new FormControl('', [Validators.required, Validators.maxLength(50)]),
     status: new FormControl('', [Validators.required]),
   });
+  idString = this.route.snapshot.paramMap.get('id');
 
   constructor(private crud: CrudService, private router: Router, private route: ActivatedRoute) { }
 
-  create() {
+  ngOnInit() {
+    if (this.idString) {
+      this.crud.getHabitacion(this.idString).subscribe({
+        next: (data) => {
+          this.habitacion = data;
+          this.habitacionForm.setValue({
+            nombre: this.habitacion.nombre,
+            status: this.habitacion.status
+          });
+        },
+        error: error => {
+          console.log(error);
+        }
+      });
+    }
+  }
+
+  update() {
     const nombre = this.habitacionForm.value.nombre;
     const status = this.habitacionForm.value.status;
 
-    if (nombre && status) {
+    if (nombre && status && this.idString) {
       console.log(nombre, status);
-      this.crud.createHabitacion(nombre, status).subscribe({
+      this.crud.updateHabitacion(nombre, status, this.idString).subscribe({
         next: (data) => {
           console.log(data);
           this.router.navigate(['/habitaciones']);
