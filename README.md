@@ -1,27 +1,39 @@
-# PaginaPractica
+# Nombre del Proyecto
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.0.
+Este es un proyecto desarrollado con Angular y Laravel.
 
-## Development server
+## Instalación
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Para instalar y ejecutar este proyecto, sigue los siguientes pasos:
 
-## Code scaffolding
+1. Clona el repositorio en tu máquina local.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+2. Navega hasta el directorio del proyecto.
 
-## Build
+3. Instala las dependencias del proyecto con el siguiente comando:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+    ```bash
+    npm install
+    ```
 
-## Running unit tests
+4. Abre el archivo `environment.ts` y cambia las variables `API_BASE_URL` y `Api_Base` a la IP de tu máquina. El archivo se verá algo así:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+    ```typescript
+    export const environment = {
+      production: false,
 
-## Running end-to-end tests
+      // Cambiar por la IP de la máquina donde se encuentre el backend
+      API_BASE_URL: 'http://<tu-ip>:8000/api/auth',
+      Api_Base: 'http://<tu-ip>:8000/api/'
+    };
+    ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+    Reemplaza `<tu-ip>` con la IP de tu máquina.
 
-## Further help
+5. Inicia el servidor de desarrollo de Laravel con el siguiente comando, reemplazando `192.168.100.84` con la IP de tu máquina:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+    ```bash
+    php artisan serve --host=<tu-ip>
+    ```
+
+Ahora deberías poder acceder a la aplicación en tu navegador en `http://<tu-ip>:8000`.

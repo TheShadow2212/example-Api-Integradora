@@ -5,6 +5,8 @@ export const routes: Routes = [
     { path: 'login', loadComponent:()=>import('./login/login.component').then(m=>m.LoginComponent)},
     { path: 'home', loadComponent:()=>import('./hub/hub.component').then(m=>m.HubComponent),canActivate: [authGuard]},
     { path: 'habitaciones', loadComponent:()=>import('./habitaciones/habitaciones.component').then(m=>m.HabitacionesComponent),canActivate: [authGuard]},
+    { path: 'habitaciones/habitacion/:id', loadComponent:()=>import('./habitacion/habitacion.component').then(m=>m.HabitacionComponent),canActivate: [authGuard]},
+
     { path: 'users', loadComponent:()=>import('./home/home.component').then(m=>m.HomeComponent), canActivate: [authGuard]},
     { path: 'user', loadComponent:()=>import('./user/user.component').then(m=>m.UserComponent), canActivate: [authGuard]},
 

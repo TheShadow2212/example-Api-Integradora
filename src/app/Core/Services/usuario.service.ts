@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { Objeto } from '../Interfaces/objeto';
 import { environment } from '../../../environments/environment';
 import { User } from '../Interfaces/user';
-import { HttpHeaders } from '@angular/common/http';
 
 
 @Injectable({
@@ -21,8 +20,6 @@ export class UsuarioService {
   }
 
   obtenerElemento(): Observable<User> {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get<User>(`${this.apiUrl_detail}`, { headers: headers });
+    return this.http.get<User>(`${this.apiUrl_detail}`);
   }
 }

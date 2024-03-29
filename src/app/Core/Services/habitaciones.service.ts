@@ -14,8 +14,10 @@ export class HabitacionesService {
   constructor(private http: HttpClient) { }
 
   obtenerElemento(): Observable<Habitacion[]> {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get<Habitacion[]>(this.apiUrl, { headers: headers });
+    return this.http.get<Habitacion[]>(this.apiUrl);
+  }
+
+  obtenerElementoPorId(id: number): Observable<Habitacion> {
+    return this.http.get<Habitacion>(`${this.apiUrl}/${id}`);
   }
 }
