@@ -3,14 +3,14 @@
 <div class="dashboard-container">
 
     <div class="flex-container">    
-<a [class.active]="isCurrentRoute('/home')" routerLink="/home" class="bottom" (click)="verificarRol()"><i class="fa-solid fa-seedling "></i></a>
-<a [class.active]="isCurrentRoute('/habitaciones')" routerLink="/habitaciones" class="top" (click)="verificarRol()"><i class="fa-solid fa-building-lock"></i></a>
-<a [class.active]="isCurrentRoute('/user')" routerLink="/user" class="top" (click)="verificarRol()"><i class="fa-solid fa-id-card"></i></a>
+        <a [class.active]="isCurrentRoute('/home')" routerLink="/home" class="bottom" (click)="verificarRol()"><i class="fa-solid fa-seedling "></i></a>
+        <a [class.active]="isCurrentRoute('/habitaciones')" routerLink="/habitaciones" class="top" (click)="verificarRol()"><i class="fa-solid fa-building-lock"></i></a>
+        <a [class.active]="isCurrentRoute('/user')" routerLink="/user" class="top" (click)="verificarRol()"><i class="fa-solid fa-id-card"></i></a>
     </div>
 
 
     <div class="flex-container" *ngIf="rol_user == '1'">
-    <a [class.active]="isCurrentRoute('/users')" routerLink="/users" class="top" *ngIf="rol_user == '1'" (click)="verificarRol()"><i class="fa-solid fa-users"></i></a>
+       <a [class.active]="isCurrentRoute('/users')" routerLink="/users" class="top" *ngIf="rol_user == '1'" (click)="verificarRol()"><i class="fa-solid fa-users"></i></a>
     </div>
 
     <div class="log-container">

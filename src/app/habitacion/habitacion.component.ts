@@ -7,11 +7,12 @@ import { ConfirmacionEliminacionComponent } from '../confirmacion-eliminacion/co
 import { Habitacion } from '../Core/Interfaces/habitacion';
 import { CrudService } from '../Core/Services/crud.service';
 import { Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-habitacion',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './habitacion.component.html',
   styleUrl: './habitacion.component.css'
 })
