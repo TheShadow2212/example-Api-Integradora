@@ -6,17 +6,19 @@ import { ConfirmacionEliminacionComponent } from '../confirmacion-eliminacion/co
 import { Habitacion } from '../Core/Interfaces/habitacion';
 import { CrudService } from '../Core/Services/crud.service';
 import { Router } from '@angular/router';
+import { SpinnerComponent } from '../spinner/spinner.component';
 
 @Component({
   selector: 'app-habitaciones',
   standalone: true,
-  imports: [CommonModule,FormsModule,ConfirmacionEliminacionComponent],
+  imports: [CommonModule,FormsModule,ConfirmacionEliminacionComponent,SpinnerComponent],
   templateUrl: './habitaciones.component.html',
   styleUrl: './habitaciones.component.css'
 })
 
 export class HabitacionesComponent implements OnInit{
  eliminar = new EventEmitter<number>();
+ loading = true;
 
   constructor(private habitacionSerive : HabitacionesService, private crud: CrudService, private router: Router) { }
   estado= 'Todas';
@@ -33,6 +35,7 @@ export class HabitacionesComponent implements OnInit{
     this.habitacionSerive.obtenerElemento().subscribe(
       data => {
         this.habitaciones = data;
+        this.stopLoading();
       },
       error => {
         console.error('Error al obtener elementos', error);
@@ -83,6 +86,12 @@ export class HabitacionesComponent implements OnInit{
 
   detailRoom(id: number){
     this.router.navigate(['/habitaciones/habitacion', id]);
+  }
+
+  stopLoading() {
+    setTimeout(() => {
+      this.loading = false;
+    }, 500);
   }
 
 }

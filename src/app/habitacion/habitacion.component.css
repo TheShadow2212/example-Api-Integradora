@@ -38,27 +38,26 @@
   align-items: center;
   text-decoration: none;
   height: 6%;
-  background: linear-gradient(to right, #9dbcff, #4D84FE);
+  background-color: #4D84FE;
   border-radius: 20px;
   padding: 15px;
   margin-bottom: 25px;
   cursor: pointer;
-  transition: background-size 0.3s ease-in-out, transform 0.3s ease-in-out;
-
+  transition: background-size 0.3s ease-in-out, transform 0.3s ease-in-out, margin 0.3s ease-in-out; 
 }
 
 .square-0:hover {
-  transform: scale(1.1);
+  transform: scale(1.02) translateX(-5px);
 }
 
 .square-0 p{
-  color: #feffff;
-  opacity: 0.5;
+  color: #b8ceff;
   margin-left: 10px;
-  transition: opacity 0.3s ease-in-out;
+  font-weight: 100;
+  transition: color 0.3s ease-in-out;
 }
 .square-0:hover p {
-  opacity: 1;
+  color: white;
 }
 
 .square-0 i{

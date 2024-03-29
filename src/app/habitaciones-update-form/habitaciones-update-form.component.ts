@@ -6,11 +6,12 @@ import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { CrudService } from '../Core/Services/crud.service';
 import { ActivatedRoute } from '@angular/router';
+import { SpinnerComponent } from '../spinner/spinner.component';
 
 @Component({
   selector: 'app-habitaciones-update-form',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterLink],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink, SpinnerComponent],
   templateUrl: './habitaciones-update-form.component.html',
   styleUrl: './habitaciones-update-form.component.css'
 })
@@ -22,6 +23,8 @@ export class HabitacionesUpdateFormComponent {
     status: new FormControl('', [Validators.required]),
   });
   idString = this.route.snapshot.paramMap.get('id');
+  loading = true;
+
 
   constructor(private crud: CrudService, private router: Router, private route: ActivatedRoute) { }
 
@@ -30,6 +33,7 @@ export class HabitacionesUpdateFormComponent {
       this.crud.getHabitacion(this.idString).subscribe({
         next: (data) => {
           this.habitacion = data;
+          this.stopLoading();
           this.habitacionForm.setValue({
             nombre: this.habitacion.nombre,
             status: this.habitacion.status
@@ -58,4 +62,10 @@ export class HabitacionesUpdateFormComponent {
         }
       });
   }}
+
+  stopLoading() {
+    setTimeout(() => {
+      this.loading = false;
+    }, 500);
+  }
 }

@@ -8,17 +8,19 @@ import { Habitacion } from '../Core/Interfaces/habitacion';
 import { CrudService } from '../Core/Services/crud.service';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
+import { SpinnerComponent } from '../spinner/spinner.component';
 
 @Component({
   selector: 'app-habitacion',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, SpinnerComponent],
   templateUrl: './habitacion.component.html',
   styleUrl: './habitacion.component.css'
 })
 export class HabitacionComponent {
   id: string;
   habitacion: Habitacion;
+  loading = true;
 
     constructor(private habitacionSerive : HabitacionesService, private route: ActivatedRoute, private router: Router) { }
 
@@ -32,6 +34,7 @@ export class HabitacionComponent {
     this.habitacionSerive.obtenerElementoPorId(Number(this.id)).subscribe(
       data => {
         this.habitacion = data;
+        this.stopLoading();
       },
       error => {
         console.error('Error al obtener elementos', error);
@@ -41,5 +44,11 @@ export class HabitacionComponent {
 
   modificarHabitacion() {
     this.router.navigate(['/habitacion/update', this.id]);
+  }
+
+  stopLoading() {
+    setTimeout(() => {
+      this.loading = false;
+    }, 500);
   }
 }
