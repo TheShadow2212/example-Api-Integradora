@@ -59,9 +59,7 @@ export class HabitacionesComponent implements OnInit{
   emitirEliminar(id: number) {
     this.crud.eliminar('/habitaciones/', id).subscribe(
       data => {
-        // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-        // this.router.onSameUrlNavigation = 'reload';
-        // this.router.navigate([this.router.url]);
+        this.ngOnInit();
       },
       error => {
         console.error('Error al eliminar elemento', error);
@@ -80,7 +78,7 @@ export class HabitacionesComponent implements OnInit{
   }
 
   addRoom(){
-    console.log('Agregando habitacion');
+    this.router.navigate(['/habitacion/create']);
   }
 
   detailRoom(id: number){

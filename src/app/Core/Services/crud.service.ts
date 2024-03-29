@@ -47,6 +47,12 @@ export class CrudService {
     return this.http.get<any>(url);
   }
 
+  createHabitacion(nombre: string, status: string, usuario_id: string): Observable<any> {
+    const url = `${environment.API_BASE_URL}/habitaciones`;
+    console.log(nombre, status, usuario_id);
+    return this.http.post<any>(url, { nombre, status, usuario_id });
+  }
+
   createRegion(Nombre: string, PaisIDstring: string): Observable<any> {
     const url = environment.API_BASE_URL + '/regiones';
     const PaisID = parseInt(PaisIDstring, 10);
