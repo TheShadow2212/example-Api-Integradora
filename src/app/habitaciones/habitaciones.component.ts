@@ -5,6 +5,7 @@ import { HabitacionesService } from '../Core/Services/habitaciones.service';
 import { ConfirmacionEliminacionComponent } from '../confirmacion-eliminacion/confirmacion-eliminacion.component';
 import { Habitacion } from '../Core/Interfaces/habitacion';
 import { CrudService } from '../Core/Services/crud.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-habitaciones',
@@ -17,7 +18,7 @@ import { CrudService } from '../Core/Services/crud.service';
 export class HabitacionesComponent implements OnInit{
  eliminar = new EventEmitter<number>();
 
-  constructor(private habitacionSerive : HabitacionesService, private crud: CrudService) { }
+  constructor(private habitacionSerive : HabitacionesService, private crud: CrudService, private router: Router) { }
   estado= 'Todas';
   mostrarConfirmacion: boolean = false;
   idElemento: number = 0;
@@ -79,7 +80,7 @@ export class HabitacionesComponent implements OnInit{
   }
 
   addRoom(){
-    console.log('Agregando habitacion');
+    this.router.navigate(['/habitacion/create']);
   }
 
   detailRoom(id: number){
