@@ -1,0 +1,31 @@
+<div class="habitacion-container">
+        
+    <form [formGroup]="habitacionForm" (ngSubmit)="update()" class="form-container">
+        <h2 class="form-title">Actualizar habitación</h2>
+
+        <div class="form-group">
+            <label for="nombre" class="form-label">Nombre de la habitación</label>
+            <input type="text" id="nombre" placeholder="Ingrese el nombre de la habitación" formControlName="nombre" class="form-input">
+            <div *ngIf="habitacionForm.controls.nombre.errors?.['required'] && habitacionForm.controls.nombre.touched" class="text-danger">
+                    El nombre es requerido
+            </div>
+            <div *ngIf="habitacionForm.controls.nombre.errors?.['maxlength']" class="text-danger">
+                    El nombre debe tener máximo 50 caracteres
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="status" class="form-label">Estado</label>
+            <select id="status" formControlName="status" class="form-input">
+                <option *ngFor="let stat of status" [value]="stat">{{stat}}</option>
+            </select>
+            <div *ngIf="habitacionForm.controls.status.errors?.['required'] && habitacionForm.controls.status.touched" class="text-danger">
+                    El estado es requerido
+            </div>
+        </div>
+
+        <button type="submit" [disabled]="!habitacionForm.valid" class="btn btn-primary form-button">Actualizar habitación</button>
+        <div class="center">
+            <a routerLink="/habitaciones" class="back-button">Return</a>
+        </div>
+    </form>

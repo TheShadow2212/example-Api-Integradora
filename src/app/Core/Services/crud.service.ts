@@ -47,11 +47,25 @@ export class CrudService {
     return this.http.get<any>(url);
   }
 
-  createHabitacion(nombre: string, status: string, usuario_id: string): Observable<any> {
+  createHabitacion(nombre: string, status: string): Observable<any> {
     const url = `${environment.API_BASE_URL}/habitaciones`;
-    console.log(nombre, status, usuario_id);
-    return this.http.post<any>(url, { nombre, status, usuario_id });
+    return this.http.post<any>(url, { nombre, status});
   }
+
+  updateHabitacion(nombre: string, status: string, id: string): Observable<any> {
+    const url = `${environment.API_BASE_URL}/habitaciones/` + id;
+    return this.http.put<any>(url, { nombre, status});
+  }
+
+  getHabitacion(id: string): Observable<any> {
+    const url = `${environment.API_BASE_URL}/habitaciones/` + id;
+    return this.http.get<any>(url);
+  }
+
+
+
+
+
 
   createRegion(Nombre: string, PaisIDstring: string): Observable<any> {
     const url = environment.API_BASE_URL + '/regiones';
