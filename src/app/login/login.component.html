@@ -1,7 +1,9 @@
+<app-spinner *ngIf="loading"></app-spinner>
+
 <div class="login-container">
     
     <form [formGroup]="loginForm" (ngSubmit)="login()">
-      <h2>Iniciar sesión</h2>
+      <h2 class="title">Iniciar sesión</h2>
   
       <div class="form-group">
         <label for="email">Email</label>
@@ -27,7 +29,7 @@
         {{ loginMessage }}
       </div>
       <div class="verification-container" *ngIf="state">
-        <label class="verification-label">Se ha enviado un codigo de verificación a tu correo</label>
+        <label class="verification-label">*Se ha enviado un codigo de verificación a tu correo*</label>
         <div class="form-group">
           <label class="verification-code-label">Código de verificación</label>
           <input type="text" id="verificationCode" placeholder="Ingrese su código de verificación" class="verification-input" [formControl]="code" maxlength="6">

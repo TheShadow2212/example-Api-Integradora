@@ -6,11 +6,12 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { CrudService } from '../Core/Services/crud.service';
+import { SpinnerComponent } from '../spinner/spinner.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterLink],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink, SpinnerComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -24,6 +25,8 @@ export class LoginComponent {
   activate: boolean = false;
   role_id: number = 0;
   token: string = '';
+  loading = false;
+
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required),
@@ -33,6 +36,7 @@ export class LoginComponent {
 
   login() {
     this.loginMessage = '';
+    this.loading = true;
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
   
@@ -43,11 +47,13 @@ export class LoginComponent {
           this.state = true;
           this.token = data.access_token;
           this.role_id = data.role_id;
+          this.loading = false;
           console.log(this.role_id);
         },
         error: error => {
           console.log(error.error.error);
           if (error.error.error === 'Unauthorized') {
+            this.loading = false;
             this.loginMessage = 'Error. Verifica tus credenciales.'
           }
           this.state = false;
@@ -90,5 +96,6 @@ export class LoginComponent {
       this.authMessage = 'Código incorrecto. Inténtalo de nuevo.';
     }
   }
+
     
 }

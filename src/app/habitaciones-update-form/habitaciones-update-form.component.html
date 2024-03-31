@@ -30,7 +30,7 @@
             </div>
         
             <div class="footer">            
-                <a routerLink="/habitaciones" class="button left">cancelar</a>
+                <a [routerLink]="['/habitaciones/habitacion', idString]" class="button left">cancelar</a>
                 <button type="submit" [disabled]="!habitacionForm.valid" class="button right">actualizar</button>
             </div>
 

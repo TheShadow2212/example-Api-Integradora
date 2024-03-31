@@ -5,11 +5,12 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { RegisterUserService } from '../Core/Services/register-user.service';
+import { SpinnerComponent } from '../spinner/spinner.component';
 
 @Component({
   selector: 'app-register-user',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterLink, FormsModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink, FormsModule,SpinnerComponent],
   templateUrl: './register-user.component.html',
   styleUrl: './register-user.component.css'
 })
@@ -17,6 +18,7 @@ export class RegisterUserComponent {
   errorMessage: string = '';
   successMessage: string = '';
   success: boolean = false;
+  loading = false;
   showPassword = new FormControl(false);
   registerForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]),
@@ -27,6 +29,7 @@ export class RegisterUserComponent {
   constructor(private router: Router, private userService: RegisterUserService) { }
 
   register() {
+    this.loading = true;
     const name = this.registerForm.value.name;
     const email = this.registerForm.value.email;
     const password = this.registerForm.value.password;
@@ -35,12 +38,14 @@ export class RegisterUserComponent {
       this.errorMessage = '';
       this.userService.register(name, email, password).subscribe({
         next: (data) => {
+          this.loading = false;
           this.errorMessage = '';
           this.success = true;
           console.log(data);
           this.successMessage = 'Se ha enviado un correo de verificación a tu correo. Verifica tu cuenta para poder iniciar sesión';
         },
         error: error => {
+          this.loading = false;
           this.success = false;
           this.errorMessage = error.error.message;
           console.log(error.error.message);
