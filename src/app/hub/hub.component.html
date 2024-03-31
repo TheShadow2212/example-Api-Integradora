@@ -1,1 +1,55 @@
-<p>hub works!</p>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<div class="container">
+    <div class="background-image">
+      <div class="inside">
+        <div class="container-header">
+            <p class="title">Tus habitaciones son nuestra prioridad</p>
+            <p class="sub-title">Con nosotros, tendrás un control total sobre la seguridad y podrás verificar su calidad con total confianza.</p>
+            <div class="button-container">
+                <button (click)="scrollToBottom()" class="button">Ver mas</button>
+                <button routerLink="/habitaciones" class="button margin">Ver habitaciones</button>    
+            </div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="data">
+            <p class="ttl-1">¿Cómo Funciona Nuestro Sistema?</p>
+            <p class="sub-ttl-2">Nuestro sistema opera mediante la integración de avanzados sensores y alertas en tiempo real. Estos capturan datos vitales de la habitación seleccionada, permitiendo un monitoreo preciso y eficaz.</p>
+        </div>
+        <div class="grid-container-1">
+            <div class="grid">
+                <img class="img-1" src="../../assets/update.jpg" alt="Descripción de la imagen">
+                <div class="grid-item">
+                    <p class="ttl-2">Actualización de Software:</p>
+                    <p class="text-2"> Mantenemos tus sistemas actualizados con las últimas versiones de software para garantizar su seguridad y rendimiento óptimo.</p>
+                </div>
+            </div>
+            <div class="grid">
+                <img class="img-1" src="../../assets/instalacion-de-hardware.jpg" alt="Descripción de la imagen">
+                <div class="grid-item">
+                    <p class="ttl-2">Instalación y Configuración de Hardware:</p>
+                    <p class="text-2">Nos encargamos de la instalación y configuración precisa de hardware para asegurar su compatibilidad y funcionamiento eficiente.</p>
+                </div>
+            </div>
+        </div>
+        <div class="grid-container-1">
+            <div class="grid">
+                <img class="img-1" src="../../assets/53582637-hardware-de-servidor-de-fijación-de-la-solución-de-problemas-de-mantenimiento-preventivo-vector-de.jpg" alt="Descripción de la imagen">
+                <div class="grid-item">
+                    <p class="ttl-2">Cuidado Preventivo del Servidor:</p>
+                    <p class="text-2">Detectamos anomalías con sensores de luz, electricidad y magnetismo para evitar problemas futuros en tus servidores.</p>
+                </div>
+            </div>
+            <div class="grid bottom-1">
+                <img class="img-1" src="../../assets/wpo-web-performance-optimization.jpg" alt="Descripción de la imagen">
+                <div class="grid-item">
+                    <p class="ttl-2">Optimización del Rendimiento con Sensores Avanzados:</p>
+                    <p class="text-2">Aprovechamos datos de sensores avanzados para garantizar la eficiencia continua de tus servidores.</p>
+                </div>
+            </div>
+            <div #bottom></div>
+        </div>
+    </div>
+</div>
+  </div>

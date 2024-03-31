@@ -6,11 +6,15 @@
         <a routerLink="/habitaciones" class="square-0"><i class="fa-solid fa-arrow-left-long"></i><p>Regresar</p></a>
         <div class="square-1">a</div>
         <div class="square-2">
-            <p>Id {{habitacion.id}}</p>
-            <p>Nombre: {{habitacion.nombre}}</p>
-            <p>Status: {{habitacion.status}}</p>
-            <p>Usuario ID: {{habitacion.usuario}}</p>
-            <button (click)="modificarHabitacion()">Modificar Habitación</button>
+            <button (click)="modificarHabitacion()"><i class="fa-solid fa-pen-to-square txt"></i></button>
+            <div *ngIf="habitacion" class="data">
+                <p class="number"><i class="fa-solid fa-hashtag symbol txt"></i> Numero: {{habitacion.id}}</p>
+                <p class="top"><i class="fa-solid fa-gauge-high txt"></i> Status: {{habitacion.status}}</p>
+                <p class="top"><i class="fas fa-sign txt"></i> Nombre: {{habitacion.nombre}}</p>
+                <div class="src">
+                    <i class="fa-solid fa-hard-drive drv"></i>
+                </div>
+            </div>
         </div>
     </div>
     <div class="information">   

@@ -1,0 +1,84 @@
+:host {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 100;
+    font-size: 18px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    height: 91.5%;
+}
+
+.blue-container{
+    background-color: #57A1EC;
+    height: 200px;
+    width: 100%;
+}
+
+.data-container {
+    position: relative; /* Añade esta línea */
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    width: 400px;
+    height: 220px;
+    border-radius: 20px;
+    margin-top: -80px;
+    background-color: #ffffff;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+  
+.user-icon {
+    position: absolute;
+    top: -50px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 130px; 
+    height: 130px; 
+    border-radius: 50%; 
+    background: #d2f1ff;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+
+.symbol{
+    font-size: 60px;
+    color: #57A1EC;
+}
+
+.data{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+    margin-top: 100px;
+}
+
+.user-name{
+    font-weight: 600;
+    font-size: 17px;
+    margin-bottom: 5px;
+}
+.user-mail{
+    font-weight: 400;
+    font-size: 15px;
+    color: #443446;
+    margin-bottom: 5px;
+
+}
+.user-rol{
+    font-weight: 600;
+    font-size: 17px;
+}
+
+.data-symbol{
+    margin-right: 10px;
+}
+
+.data-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); 
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; 
+}

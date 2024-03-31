@@ -1,6 +1,18 @@
-<div *ngIf="usuario"> 
-    <p>ID: {{usuario.id}}</p>
-    <p>Nombre: {{usuario.nombre}}</p>
-    <p>Email: {{usuario.email}}</p>
-    <p>Rol: {{usuario.rol}}</p>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<app-spinner *ngIf="loading"></app-spinner>
+
+
+<div class="container">
+    <div class="blue-container"></div>
+    <div class="data-container">
+        <div class="user-icon">
+          <i class="fa-solid fa-user-large symbol"></i>
+        </div>
+        <div class="data" *ngIf="usuario"> 
+            <p class="user-name">{{usuario.nombre}} #{{usuario.id}}</p>
+            <p class="user-mail">{{usuario.email}}</p>
+            <p class="user-rol"><i class="fa-solid fa-suitcase-rolling data-symbol"></i>{{usuario.rol}}</p>
+        </div>
+
+    </div>
 </div>
