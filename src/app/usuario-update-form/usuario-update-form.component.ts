@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule,RouterLink],
   templateUrl: './usuario-update-form.component.html',
-  styleUrl: '../update-form/update-form.component.css'
+  styleUrl: '../usuario-update-form/usuario-update-form.component.css'
 })
 export class UsuarioUpdateFormComponent {
   roles: any[] = [];

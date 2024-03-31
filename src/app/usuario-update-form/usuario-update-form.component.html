@@ -1,48 +1,51 @@
-<div class="form-container">
-        
+<div class="container">
+    <div class="form-container">
+        <div class="ttl">            
+            <a routerLink="/users" class="back-button"><i class="fa-solid fa-arrow-left symbol"></i></a>
+            <p class="form-title">Actualizar usuario</p>
+        </div>
         <form [formGroup]="usuarioForm" (ngSubmit)="update()">
-            <h2 class="form-title">Actualizar usuario</h2>
-
+        
             <div class="form-group">
-                <label for="name" class="form-label">Nombre</label>
-                <input id="name" placeholder="Ingrese su nombre" formControlName="name" class="form-input">
+                <label for="name" class="txt">Nombre</label>
+                <input id="name" placeholder="Ingrese su nombre" formControlName="name" class="input">
                 <div *ngIf="usuarioForm.controls.name.errors?.['required'] && usuarioForm.controls.name.touched" class="text-danger">
                         El nombre es requerido
-                    </div>
-                    <div *ngIf="usuarioForm.controls.name.errors?.['minlength']" class="text-danger">
+                </div>
+                <div *ngIf="usuarioForm.controls.name.errors?.['minlength']" class="text-danger">
                         El nombre debe tener al menos 3 caracteres
-                    </div>
-                    <div *ngIf="usuarioForm.controls.name.errors?.['maxlength']" class="text-danger">
+                </div>
+                <div *ngIf="usuarioForm.controls.name.errors?.['maxlength']" class="text-danger">
                         El nombre debe tener menos de 15 caracteres
-                    </div>
+                </div>
             </div>
-    
+        
             <div class="form-group">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" id="email" placeholder="Ingrese su email" formControlName="email" class="form-input">
+                <label for="email" class="txt">Email</label>
+                <input type="email" id="email" placeholder="Ingrese su email" formControlName="email" class="input">
                 <div *ngIf="usuarioForm.controls.email.errors?.['required'] && usuarioForm.controls.email.touched" class="text-danger">
                         El email es requerido
-                    </div>
-                    <div *ngIf="usuarioForm.controls.email.errors?.['email']" class="text-danger">
+                </div>
+                <div *ngIf="usuarioForm.controls.email.errors?.['email']" class="text-danger">
                         Por favor, ingrese un email válido
-                    </div>
-            </div>
-
-            <div class="form-group">
-                <label for="role_id" class="form-label">Rol</label>
-                <select id="role_id" formControlName="role_id" class="form-input">
-                    <option *ngFor="let role of roles" [value]="role.id">{{role.name}}</option>
-                </select>
-                <div *ngIf="usuarioForm.controls.role_id.errors?.['required'] && usuarioForm.controls.role_id.touched" class="text-danger">
-                    El rol es requerido
                 </div>
             </div>
 
-            <button type="submit" class="form-button">Actualizar</button>
-            <div class="center">
-                <a routerLink="/home" class="back-button">Return</a>
-              </div>
-          
+            <div class="form-group">
+                <label for="role_id" class="txt">Rol</label>
+                <select id="role_id" formControlName="role_id" class="input">
+                    <option *ngFor="let role of roles" [value]="role.id">{{role.name}}</option>
+                </select>
+                <div *ngIf="usuarioForm.controls.role_id.errors?.['required'] && usuarioForm.controls.role_id.touched" class="text-danger">
+                        El rol es requerido
+                </div>
+            </div>
+
+            <div class="footer">            
+                <a routerLink="/users" class="button left">cancelar</a>
+                <button type="submit" [disabled]="!usuarioForm.valid" class="button right">actualizar</button>
+            </div>
+
         </form>
-        
     </div>
+</div>

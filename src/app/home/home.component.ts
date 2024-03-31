@@ -4,13 +4,14 @@ import { Objeto } from '../Core/Interfaces/objeto';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { TableComponent } from '../table/table.component';
 import { CommonModule } from '@angular/common';
+import { SpinnerComponent } from '../spinner/spinner.component';
 
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [TableComponent,CommonModule,DashboardComponent],
+  imports: [TableComponent,CommonModule,DashboardComponent,SpinnerComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -23,6 +24,7 @@ export class HomeComponent implements OnInit{
   backRoute: string = '/home';
   rol_user: string = "3";
   section_id: boolean = true;
+  loading = true;
 
 
   constructor(private usuarioService: UsuarioService) { }
@@ -40,6 +42,7 @@ export class HomeComponent implements OnInit{
     this.usuarioService.obtenerElementos().subscribe(
       data => {
         this.elementos = data;
+        this.stopLoading();
       },
       error => {
         console.error('Error al obtener empleados', error);
@@ -57,6 +60,13 @@ export class HomeComponent implements OnInit{
 
   agregarElemento(id: number) {
     console.log('se agregara un nuevo elemento ');
+  }
+
+  
+  stopLoading() {
+    setTimeout(() => {
+      this.loading = false;
+    }, 500);
   }
 
 }
