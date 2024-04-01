@@ -6,17 +6,19 @@ import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { CrudService } from '../Core/Services/crud.service';
 import { ActivatedRoute } from '@angular/router';
+import { SpinnerComponent } from '../spinner/spinner.component';
 
 @Component({
   selector: 'app-usuario-update-form',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule,RouterLink],
+  imports: [ReactiveFormsModule, CommonModule,RouterLink, SpinnerComponent],
   templateUrl: './usuario-update-form.component.html',
   styleUrl: '../usuario-update-form/usuario-update-form.component.css'
 })
 export class UsuarioUpdateFormComponent {
   roles: any[] = [];
   usuario: any;
+  loading = true;
   showPassword = new FormControl(false);
   usuarioForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]),
@@ -43,6 +45,7 @@ export class UsuarioUpdateFormComponent {
       next: (data) => {
         console.log(data);
         this.usuario = data;
+        this.stopLoading();
         this.usuarioForm.setValue({
           name: this.usuario.name,
           email: this.usuario.email,
@@ -74,5 +77,11 @@ export class UsuarioUpdateFormComponent {
         }
       });
   }
+  }
+
+  stopLoading() {
+    setTimeout(() => {
+      this.loading = false;
+    }, 500);
   }
 }

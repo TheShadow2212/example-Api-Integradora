@@ -3,7 +3,7 @@
 <div class="container">
     <div class="form-container">
         <div class="ttl">            
-            <a routerLink="/habitaciones" class="back-button"><i class="fa-solid fa-arrow-left symbol"></i></a>
+            <a [routerLink]="['/habitaciones/habitacion', idString]" class="back-button"><i class="fa-solid fa-arrow-left symbol"></i></a>
             <p class="form-title">Actualizar habitación</p>
         </div>
         <form [formGroup]="habitacionForm" (ngSubmit)="update()">

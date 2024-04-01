@@ -1,7 +1,6 @@
 :host {
     font-family: "Open Sans", sans-serif;
 }
-
 .container{
     width: 100%;
     display: flex;
@@ -62,6 +61,9 @@
 
 .alerts-container {
     display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    
     width: 90%;
     height: 500px;
     border-radius: 20px;
@@ -77,7 +79,7 @@
     justify-content: center;
     align-items: center;
     font-size: 15px;
-    height: 25px;
+    height: 27px;
     margin-top: 15px;
     border: none;
     border-radius: 10px;
@@ -256,4 +258,65 @@
 
 .delete-btn:hover i {
     transform: scale(1.2); 
+}
+
+.notificacion-container{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    position: relative;
+
+    background-color: #eeeeee;
+    border-radius: 10px;
+    transition: all 0.3s;
+}
+.red{
+    background-color: #ff4d4d;
+    border-bottom-left-radius:5px;
+    border-top-left-radius:5px;
+    width: 6px;
+    height: 100%;
+    margin-right: 7px;
+}
+
+.data-noti{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.notificacion-container:hover{
+    scale: 1.03;
+    background-color: #e1e1e1;
+}
+
+.noti-ttl{
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.noti-data{
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.icon-delt{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 0;
+    width: 30px;
+    height: 100%;
+}
+
+.delete-symbol{
+    color: rgb(147, 147, 147);
+    cursor: pointer;
+    margin-right: 15px;
+    transition: all 0.3s;
+}
+
+.delete-symbol:hover{
+    scale: 1.2;
+    color: rgb(121, 121, 121);
 }

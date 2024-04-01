@@ -312,4 +312,5 @@ export class CrudService {
     const url = `${environment.API_BASE_URL}/inquilinos/` + id;
     return this.http.get<any>(url);
   }
+
 }

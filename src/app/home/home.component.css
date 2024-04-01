@@ -1,3 +1,10 @@
 .container {
-  height: 91.5%;  /* El 100% de la altura de la ventana */
+  height: 91.5%; 
+  display: flex;
+  justify-content: flex-end;
+}
+
+.table{
+  width: 90%;
+  margin-top: 50px;
 }

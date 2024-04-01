@@ -28,7 +28,17 @@
     </div>
     <div class="activities-container">
         <button class="add-element" (click)="addRoom()">Agregar una habitacion</button>
-        <div class="alerts-container">Se recibiran objetos notificacion de tipo critico de mongo (Pendiente)</div>
+        <div class="alerts-container">
+            <div *ngFor="let notificacion of notificaciones" class="notificacion-container">
+                <div class="red"></div>
+                <div class="data-noti">
+                    <p class="noti-ttl">Habitacion, {{notificacion.room}}</p>
+                    <p class="noti-data">{{notificacion.data}}</p>
+                </div>
+                <div class="icon-delt"><i (click)="statusNotification(notificacion.id)" class="fa-regular fa-square-minus delete-symbol"></i></div>
+            </div>
+            <p>*Falta que si detecta una nueva se actualice y se muestre*</p>
+        </div>
     </div>
 </div>
 

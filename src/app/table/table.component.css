@@ -1,8 +1,15 @@
+:host {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 100;
+    font-size: 17px;
+    color: white;
+  }
+  
 .container {
     display: flex;
     justify-content: center;
     height: 91.5%;
-    background-color: #F8FAFB;
+    background-color: #ffffff;
     font-family: Arial, sans-serif;
     max-width: 100%; /* Ancho máximo de la tabla */
     overflow-x: auto; /* Permitir el desplazamiento horizontal */
@@ -12,18 +19,18 @@ table {
     max-height: 50px;
     width: 100%;
     border-collapse: collapse;
-    color: #D9D9D9;
-    background-color: #15202B;
+    color: #ffffff;
+    background-color: #8fb2ff;
     overflow-y: auto; /* Permitir el desplazamiento vertical */
 }
 
 thead {
-    background-color: #192734;
+    background-color: #4D84FE;
 }
 
 th, td {
     padding: 15px;
-    border-bottom: 1px solid #2C3E50;
+    border-bottom: 2px solid #ffffff;
     text-align: center;
     vertical-align: middle;
 }
@@ -41,7 +48,7 @@ button {
     border: none;
     border-radius: 6px;
     color: #FFFFFF;
-    background-color: #777777;
+    background-color: #3471F3;
     cursor: pointer;
     transition: all 0.3s ease; /* Añadir una transición suave */
 
@@ -61,11 +68,11 @@ button:hover {
 }
 
 .edit:hover {
-    background-color: #72703e;
+    background-color: #2887c7;
 }
 .delete:hover {
-    background-color: #723e3e;
+    background-color: #2887c7;
 }
 .add:hover {
-    background-color: #3e723e;
+    background-color: #2887c7;
 }
