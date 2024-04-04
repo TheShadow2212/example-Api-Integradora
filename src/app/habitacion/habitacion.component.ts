@@ -28,6 +28,9 @@ export class HabitacionComponent {
   habitacion: Habitacion;
   notificaciones: Notificaction[] = [];
   sensores: Sensor[] = [];
+  sensores_sq3 : Sensor[] = [];
+  sensores_sq4 : Sensor[] = [];
+  sensores_sq5 : Sensor[] = [];
 
   loading = true;
 
@@ -45,6 +48,7 @@ export class HabitacionComponent {
     this.habitacionSerive.obtenerElementoPorId(Number(this.id)).subscribe(
       data => {
         this.habitacion = data;
+        this.stopLoading();
       },
       error => {
         console.error('Error al obtener elementos', error);
@@ -56,7 +60,7 @@ export class HabitacionComponent {
     this.notificationService.obtenerElementoPorId(this.id).subscribe(
       data => {
         this.notificaciones = data;
-        this.stopLoading();
+        console.log(this.notificaciones);
       },
       error => {
         console.error('Error al obtener elementos', error);
@@ -68,7 +72,20 @@ export class HabitacionComponent {
     this.sensorService.obtenerElementoPorId(this.id).subscribe(
       data => {
         this.sensores = data;
-        console.log(this.sensores);
+        this,this.sensores.forEach(sensor => {
+          if(sensor.name == "Temperatura")
+          {
+            this.sensores_sq4.push(sensor)
+          }
+          else if(sensor.name == "Humo" || sensor.name == "Humedad" || sensor.name == "Voltaje")
+          {
+            this.sensores_sq3.push(sensor)
+          }
+          else
+          {
+            this.sensores_sq5.push(sensor)
+          }
+        });
       },
       error => {
         console.error('Error al obtener elementos', error);

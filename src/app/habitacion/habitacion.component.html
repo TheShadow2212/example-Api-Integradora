@@ -1,14 +1,20 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
 <app-spinner *ngIf="loading"></app-spinner>
 
 <div class="container">
     <div class="room">
         <a routerLink="/habitaciones" class="square-0"><i class="fa-solid fa-arrow-left-long"></i><p>Regresar</p></a>
         <div class="square-1">
-            <div *ngFor="let notificacion of notificaciones">
-                <p>{{notificacion.id}}</p>
-                <p>{{notificacion.type}}</p>
-                <p>{{notificacion.data}}</p>
+            <p class="ttl-notification-1">Historial de notificaciones</p>
+            <div class="background-sq1">
+                <div *ngFor="let notificacion of notificaciones" class="notis-container">
+                    <i class="fa-solid fa-caret-right symbol-notification"></i>
+                    <p class="notification-data">
+                        {{notificacion.data}} ({{notificacion.type}})
+                    </p>
+                </div>
             </div>
         </div>
         <div class="square-2">
@@ -25,11 +31,34 @@
     </div>
     <div class="information">   
         <div class="section-1">
-            <div class="square-3">a</div>
-            <div class="square-4">a</div>
+            <div class="square-3">
+                <div *ngFor="let sensor of sensores_sq3">
+                    <p>{{sensor.name}}</p>
+                    <p>{{sensor.data}}</p>
+                </div>
+            </div>
+            <div class="square-4">
+                <span class="material-symbols-outlined">mode_dual</span>
+                <div class="sq-4-content-top">
+                    <div class="sq-4-content-top-child">
+                        <i class="fa-solid fa-location-dot location-symbol"></i>
+                        <p>{{habitacion.nombre}}</p>
+                    </div>
+                    <div class="grade-2">
+                        <p>°C</p>
+                    </div>
+                </div>
+                <div *ngFor="let sensor of sensores_sq4" class="data-content">
+                    <div class="temp_data_container">
+                            <p class="data_temp">{{sensor.data}}</p>
+                            <p class="grade">°C</p>
+                    </div>
+                </div>
+                <div class="rectangle-bottom"></div>
+            </div>
         </div>
         <div class="square-5">
-            <div *ngFor="let sensor of sensores">
+            <div *ngFor="let sensor of sensores_sq5">
                 <p>{{sensor.name}}</p>
                 <p>{{sensor.data}}</p>
             </div>

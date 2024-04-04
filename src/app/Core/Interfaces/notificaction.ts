@@ -1,6 +1,6 @@
 export interface Notificaction {
     id: number;
-    room: string;
-    data: string;
-    type: string;
+    room: string|null;
+    data: string|null;
+    type: string|null;
 }

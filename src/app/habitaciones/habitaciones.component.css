@@ -18,6 +18,10 @@
     height: 100%;
 }
 
+.space-nttm{
+    margin-bottom: 20px;
+}
+
 .activities-container{
     display: flex;
     align-items: center;
