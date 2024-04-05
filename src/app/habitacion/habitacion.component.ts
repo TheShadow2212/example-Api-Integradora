@@ -28,6 +28,16 @@ export class HabitacionComponent {
   habitacion: Habitacion;
   notificaciones: Notificaction[] = [];
   sensores: Sensor[] = [];
+
+  sensor_temperatura: Sensor[] = [];
+  sensor_humo: Sensor[] = [];
+  sensor_voltaje: Sensor[] = [];
+  sensor_humedad: Sensor[] = [];
+  sensor_luz: Sensor[] = [];
+  sensor_infrarrojo: Sensor[] = [];
+  sensor_magnetico: Sensor[] = [];
+
+
   sensores_sq3 : Sensor[] = [];
   sensores_sq4 : Sensor[] = [];
   sensores_sq5 : Sensor[] = [];
@@ -72,18 +82,29 @@ export class HabitacionComponent {
     this.sensorService.obtenerElementoPorId(this.id).subscribe(
       data => {
         this.sensores = data;
-        this,this.sensores.forEach(sensor => {
-          if(sensor.name == "Temperatura")
-          {
-            this.sensores_sq4.push(sensor)
-          }
-          else if(sensor.name == "Humo" || sensor.name == "Humedad" || sensor.name == "Voltaje")
-          {
-            this.sensores_sq3.push(sensor)
-          }
-          else
-          {
-            this.sensores_sq5.push(sensor)
+        this.sensores.forEach(sensor => {
+          switch (sensor.name) {
+            case "Temperatura":
+              this.sensor_temperatura.push(sensor);
+              break;
+            case "Humo":
+              this.sensor_humo.push(sensor);
+              break;
+            case "Humedad":
+              this.sensor_humedad.push(sensor);
+              break;
+            case "Voltaje":
+              this.sensor_voltaje.push(sensor);
+              break;
+            case "Luz":
+              this.sensor_luz.push(sensor);
+              break;
+            case "Infrarrojo":
+              this.sensor_infrarrojo.push(sensor);
+              break;
+            default:
+              this.sensor_magnetico.push(sensor);
+              break;
           }
         });
       },
@@ -92,7 +113,7 @@ export class HabitacionComponent {
       }
     );
   }
-
+  
 
   modificarHabitacion() {
     this.router.navigate(['/habitacion/update', this.id]);
@@ -103,4 +124,5 @@ export class HabitacionComponent {
       this.loading = false;
     }, 500);
   }
+  
 }

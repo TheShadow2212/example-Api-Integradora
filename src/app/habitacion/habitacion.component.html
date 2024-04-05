@@ -32,23 +32,37 @@
     <div class="information">   
         <div class="section-1">
             <div class="square-3">
-                <div *ngFor="let sensor of sensores_sq3">
+                <div class="space_fake"></div>
+                <div *ngFor="let sensor of sensor_humedad" class="sens_hume">
                     <p>{{sensor.name}}</p>
                     <p>{{sensor.data}}</p>
                 </div>
+                <div *ngFor="let sensor of sensor_voltaje" class="sens_volt">
+                    <p>{{sensor.name}}</p>
+                    <p>{{sensor.data}}</p>
+                </div>
+                <div *ngFor="let sensor of sensor_humo" class="sens_hum">
+                    <p class="ttl-sens-hum"><i class="fa-brands fa-cloudversify cloud"></i>Sensor de humo</p>
+                    <span *ngIf="sensor.data == '0'" class="material-symbols-outlined status-humo">detector_status</span>
+                    <span *ngIf="sensor.data == '1'" class="material-symbols-outlined status-humo">detector_smoke </span>
+                    <div class="data-humo-sens-cont">
+                        <p class="data-humo-sens">{{sensor.data}}</p>
+                    </div>
+                </div>
+                <span class="material-symbols-outlined vanish-2">foggy</span>
             </div>
             <div class="square-4">
-                <span class="material-symbols-outlined">mode_dual</span>
+                <span class="material-symbols-outlined vanish">mode_dual</span>
                 <div class="sq-4-content-top">
                     <div class="sq-4-content-top-child">
                         <i class="fa-solid fa-location-dot location-symbol"></i>
-                        <p>{{habitacion.nombre}}</p>
+                        <p *ngIf="habitacion">{{habitacion.nombre}}</p>
                     </div>
                     <div class="grade-2">
                         <p>°C</p>
                     </div>
                 </div>
-                <div *ngFor="let sensor of sensores_sq4" class="data-content">
+                <div *ngFor="let sensor of sensor_temperatura" class="data-content">
                     <div class="temp_data_container">
                             <p class="data_temp">{{sensor.data}}</p>
                             <p class="grade">°C</p>
@@ -58,7 +72,15 @@
             </div>
         </div>
         <div class="square-5">
-            <div *ngFor="let sensor of sensores_sq5">
+            <div *ngFor="let sensor of sensor_infrarrojo">
+                <p>{{sensor.name}}</p>
+                <p>{{sensor.data}}</p>
+            </div>
+            <div *ngFor="let sensor of sensor_luz">
+                <p>{{sensor.name}}</p>
+                <p>{{sensor.data}}</p>
+            </div>
+            <div *ngFor="let sensor of sensor_magnetico">
                 <p>{{sensor.name}}</p>
                 <p>{{sensor.data}}</p>
             </div>
