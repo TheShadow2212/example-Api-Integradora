@@ -34,22 +34,25 @@
             <div class="square-3">
                 <div class="space_fake"></div>
                 <div *ngFor="let sensor of sensor_humedad" class="sens_hume">
-                    <p>{{sensor.name}}</p>
-                    <p>{{sensor.data}}</p>
+                    <p class="ttl-sens-hum"><i class="fa-solid fa-water cloud"></i>Humedad</p>
+                    <p class="data-sens-1">{{sensor.data}}</p>
                 </div>
                 <div *ngFor="let sensor of sensor_voltaje" class="sens_volt">
-                    <p>{{sensor.name}}</p>
-                    <p>{{sensor.data}}</p>
+                    <p class="ttl-sens-hum"><i class="fa-solid fa-bolt-lightning cloud"></i>Consumo de voltaje</p>
+                    <p class="data-sens-1">{{sensor.data}}</p>
                 </div>
                 <div *ngFor="let sensor of sensor_humo" class="sens_hum">
                     <p class="ttl-sens-hum"><i class="fa-brands fa-cloudversify cloud"></i>Sensor de humo</p>
                     <span *ngIf="sensor.data == '0'" class="material-symbols-outlined status-humo">detector_status</span>
-                    <span *ngIf="sensor.data == '1'" class="material-symbols-outlined status-humo">detector_smoke </span>
+                    <span *ngIf="sensor.data == '1'" class="material-symbols-outlined status-humo active">detector_smoke </span>
                     <div class="data-humo-sens-cont">
                         <p class="data-humo-sens">{{sensor.data}}</p>
                     </div>
                 </div>
                 <span class="material-symbols-outlined vanish-2">foggy</span>
+                <span class="material-symbols-outlined vanish-3">humidity_high</span>
+                <span class="material-symbols-outlined vanish-4">bolt</span>
+
             </div>
             <div class="square-4">
                 <span class="material-symbols-outlined vanish">mode_dual</span>
@@ -72,18 +75,31 @@
             </div>
         </div>
         <div class="square-5">
-            <div *ngFor="let sensor of sensor_infrarrojo">
-                <p>{{sensor.name}}</p>
-                <p>{{sensor.data}}</p>
+            <div class="rectangle rectangle-left">
+                <div *ngFor="let sensor of sensor_infrarrojo">
+                    <p class="ttl-notification-2">Sensor infrarrojo</p>
+                    <p  *ngIf="sensor.data=='0'" class="symbol-bulb off"><i class="fa-regular fa-sun"></i></p>
+                    <p  *ngIf="sensor.data=='1'" class="symbol-bulb on"><i class="fa-solid fa-sun"></i></p>
+                    <p class="data-sensor-2">{{sensor.data}}</p>
+                </div>
             </div>
-            <div *ngFor="let sensor of sensor_luz">
-                <p>{{sensor.name}}</p>
-                <p>{{sensor.data}}</p>
+            <div class="rectangle rectangle-center">
+                <div *ngFor="let sensor of sensor_luz">
+                    <p class="ttl-notification-2">Sensor de luz</p>
+                    <p *ngIf="sensor.data=='0'" class="symbol-bulb off"><i class="fa-regular fa-lightbulb"></i></p>
+                    <p *ngIf="sensor.data=='1'" class="symbol-bulb on"><i class="fa-solid fa-lightbulb"></i></p>
+                    <p class="data-sensor-2">{{sensor.data}}</p>
+                </div>
             </div>
-            <div *ngFor="let sensor of sensor_magnetico">
-                <p>{{sensor.name}}</p>
-                <p>{{sensor.data}}</p>
+            <div class="rectangle rectangle-right">
+                <div *ngFor="let sensor of sensor_magnetico">
+                    <p class="ttl-notification-2">Sensor magnetico</p>
+                    <p *ngIf="sensor.data=='0'" class="symbol-bulb off"><i class="fa-solid fa-magnet"></i></p>
+                    <p *ngIf="sensor.data=='1'" class="symbol-bulb on"><i class="fa-solid fa-magnet"></i></p>
+                    <p class="data-sensor-2">{{sensor.data}}</p>
+                </div>
             </div>
+
         </div>
     </div>
 </div>
