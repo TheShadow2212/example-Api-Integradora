@@ -15,6 +15,7 @@ import { CrudService } from '../Core/Services/crud.service';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { SpinnerComponent } from '../spinner/spinner.component';
+import pusherJs from 'pusher-js'
 
 @Component({
   selector: 'app-habitacion',
@@ -43,6 +44,7 @@ export class HabitacionComponent {
   sensores_sq5 : Sensor[] = [];
 
   loading = true;
+  pusher: any;
 
     constructor(private sensorService : SensorService, private notificationService : NotificationService, private habitacionSerive : HabitacionesService, private route: ActivatedRoute, private router: Router) { }
 
@@ -52,6 +54,26 @@ export class HabitacionComponent {
     this.obtenerDatos();
     this.obtenerNotificaciones();
     this.obtenerSensorData();
+    this.iniciarPusher();
+  }
+
+  ngOnDestroy(): void {
+    if (this.pusher) {
+      this.pusher.disconnect();
+    }
+  }
+
+  iniciarPusher() {
+    this.pusher = new pusherJs('41abcfed77601deb48a5', {
+      cluster: 'us3',
+      forceTLS: false,
+      wsHost: window.location.hostname,
+      wsPort: 6001,
+      enabledTransports: ['ws']
+    });
+    this.pusher.connection.bind('connected', () => {
+      console.log('Conexión establecida');
+    });
   }
 
   obtenerDatos() {
