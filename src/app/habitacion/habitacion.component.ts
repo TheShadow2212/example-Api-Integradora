@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { SpinnerComponent } from '../spinner/spinner.component';
 import pusherJs from 'pusher-js'
+import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-habitacion',
@@ -38,7 +39,6 @@ export class HabitacionComponent {
   sensor_infrarrojo: Sensor[] = [];
   sensor_magnetico: Sensor[] = [];
 
-
   sensores_sq3 : Sensor[] = [];
   sensores_sq4 : Sensor[] = [];
   sensores_sq5 : Sensor[] = [];
@@ -46,34 +46,22 @@ export class HabitacionComponent {
   loading = true;
   pusher: any;
 
-    constructor(private sensorService : SensorService, private notificationService : NotificationService, private habitacionSerive : HabitacionesService, private route: ActivatedRoute, private router: Router) { }
+  private sensorDataSubscription: Subscription;
+
+  constructor(private sensorService : SensorService, private notificationService : NotificationService, private habitacionSerive : HabitacionesService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id')!;
     console.log(this.id);
     this.obtenerDatos();
     this.obtenerNotificaciones();
-    this.obtenerSensorData();
-    this.iniciarPusher();
+    this.sensorDataSubscription = interval(4000).subscribe(() => this.obtenerSensorData());
   }
 
-  ngOnDestroy(): void {
-    if (this.pusher) {
-      this.pusher.disconnect();
+  ngOnDestroy() {
+    if (this.sensorDataSubscription) {
+      this.sensorDataSubscription.unsubscribe();
     }
-  }
-
-  iniciarPusher() {
-    this.pusher = new pusherJs('41abcfed77601deb48a5', {
-      cluster: 'us3',
-      forceTLS: false,
-      wsHost: window.location.hostname,
-      wsPort: 6001,
-      enabledTransports: ['ws']
-    });
-    this.pusher.connection.bind('connected', () => {
-      console.log('Conexión establecida');
-    });
   }
 
   obtenerDatos() {
@@ -101,39 +89,40 @@ export class HabitacionComponent {
   }
 
   obtenerSensorData() {
-    this.sensorService.obtenerElementoPorId(this.id).subscribe(
-      data => {
-        this.sensores = data;
-        this.sensores.forEach(sensor => {
-          switch (sensor.name) {
-            case "Temperatura":
-              this.sensor_temperatura.push(sensor);
-              break;
-            case "Humo":
-              this.sensor_humo.push(sensor);
-              break;
-            case "Humedad":
-              this.sensor_humedad.push(sensor);
-              break;
-            case "Voltaje":
-              this.sensor_voltaje.push(sensor);
-              break;
-            case "Luz":
-              this.sensor_luz.push(sensor);
-              break;
-            case "Infrarrojo":
-              this.sensor_infrarrojo.push(sensor);
-              break;
-            default:
-              this.sensor_magnetico.push(sensor);
-              break;
-          }
-        });
-      },
-      error => {
-        console.error('Error al obtener elementos', error);
-      }
-    );
+    console.log('Hola')
+    // this.sensorService.obtenerElementoPorId(this.id).subscribe(
+    //   data => {
+    //     this.sensores = data;
+    //     this.sensores.forEach(sensor => {
+    //       switch (sensor.name) {
+    //         case "Temperatura":
+    //           this.sensor_temperatura.push(sensor);
+    //           break;
+    //         case "Humo":
+    //           this.sensor_humo.push(sensor);
+    //           break;
+    //         case "Humedad":
+    //           this.sensor_humedad.push(sensor);
+    //           break;
+    //         case "Voltaje":
+    //           this.sensor_voltaje.push(sensor);
+    //           break;
+    //         case "Luz":
+    //           this.sensor_luz.push(sensor);
+    //           break;
+    //         case "Infrarrojo":
+    //           this.sensor_infrarrojo.push(sensor);
+    //           break;
+    //         default:
+    //           this.sensor_magnetico.push(sensor);
+    //           break;
+    //       }
+    //     });
+    //   },
+    //   error => {
+    //     console.error('Error al obtener elementos', error);
+    //   }
+    // );
   }
   
 

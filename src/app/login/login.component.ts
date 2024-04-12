@@ -55,7 +55,10 @@ export class LoginComponent {
           if (error.error.error === 'Unauthorized') {
             this.loading = false;
             this.loginMessage = 'Error. Verifica tus credenciales.'
-          }
+          }  else if (error.error.error === 'Email not verified') {
+            this.loading = false;
+            this.loginMessage = 'Verifica tu correo para iniciar sesión'
+          } 
           this.state = false;
         }
     });
