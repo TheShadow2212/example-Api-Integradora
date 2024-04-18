@@ -9,6 +9,8 @@ import { Notificaction } from '../Core/Interfaces/notificaction';
 import { CrudService } from '../Core/Services/crud.service';
 import { Router } from '@angular/router';
 import { SpinnerComponent } from '../spinner/spinner.component';
+import { SharedService } from '../shared-service.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-habitaciones',
@@ -21,14 +23,25 @@ import { SpinnerComponent } from '../spinner/spinner.component';
 export class HabitacionesComponent implements OnInit{
  eliminar = new EventEmitter<number>();
  loading = true;
+ private update: Subscription;
 
-  constructor(private notificacionService : NotificationService,private habitacionSerive : HabitacionesService, private crud: CrudService, private router: Router) { }
+constructor(private notificacionService : NotificationService,private habitacionSerive : HabitacionesService, private crud: CrudService, private router: Router, private ss: SharedService) {
+    this.update = this.ss.dataUpdated$.subscribe(() => {
+      this.ngOnInit();
+    });
+   }
   estado= 'Todas';
   mostrarConfirmacion: boolean = false;
   idElemento: number = 0;
 
   habitaciones: Habitacion[] = [];
   notificaciones: Notificaction[] = [];
+
+  ngOnDestroy() {
+    if (this.update) {
+      this.update.unsubscribe();
+    }
+  }
 
   ngOnInit(): void {
     this.obtenerDatos();
@@ -51,6 +64,7 @@ export class HabitacionesComponent implements OnInit{
     this.notificacionService.obtenerElemento().subscribe(
       data => {
         this.notificaciones = data;
+        this.notificaciones.reverse();
         console.log(this.notificaciones);
       },
       error => {

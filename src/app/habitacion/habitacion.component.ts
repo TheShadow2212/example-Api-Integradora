@@ -89,40 +89,39 @@ export class HabitacionComponent {
   }
 
   obtenerSensorData() {
-    console.log('Hola')
-    // this.sensorService.obtenerElementoPorId(this.id).subscribe(
-    //   data => {
-    //     this.sensores = data;
-    //     this.sensores.forEach(sensor => {
-    //       switch (sensor.name) {
-    //         case "Temperatura":
-    //           this.sensor_temperatura.push(sensor);
-    //           break;
-    //         case "Humo":
-    //           this.sensor_humo.push(sensor);
-    //           break;
-    //         case "Humedad":
-    //           this.sensor_humedad.push(sensor);
-    //           break;
-    //         case "Voltaje":
-    //           this.sensor_voltaje.push(sensor);
-    //           break;
-    //         case "Luz":
-    //           this.sensor_luz.push(sensor);
-    //           break;
-    //         case "Infrarrojo":
-    //           this.sensor_infrarrojo.push(sensor);
-    //           break;
-    //         default:
-    //           this.sensor_magnetico.push(sensor);
-    //           break;
-    //       }
-    //     });
-    //   },
-    //   error => {
-    //     console.error('Error al obtener elementos', error);
-    //   }
-    // );
+    this.sensorService.obtenerElementoPorId(this.id).subscribe(
+      data => {
+        this.sensores = data;
+        this.sensores.forEach(sensor => {
+          switch (sensor.name) {
+            case "Temperatura":
+              this.sensor_temperatura.push(sensor);
+              break;
+            case "Humo":
+              this.sensor_humo.push(sensor);
+              break;
+            case "Humedad":
+              this.sensor_humedad.push(sensor);
+              break;
+            case "Voltaje":
+              this.sensor_voltaje.push(sensor);
+              break;
+            case "Luz":
+              this.sensor_luz.push(sensor);
+              break;
+            case "Infrarrojo":
+              this.sensor_infrarrojo.push(sensor);
+              break;
+            default:
+              this.sensor_magnetico.push(sensor);
+              break;
+          }
+        });
+      },
+      error => {
+        console.error('Error al obtener elementos', error);
+      }
+    );
   }
   
 
