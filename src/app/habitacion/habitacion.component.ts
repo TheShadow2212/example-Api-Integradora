@@ -17,6 +17,7 @@ import { RouterLink } from '@angular/router';
 import { SpinnerComponent } from '../spinner/spinner.component';
 import pusherJs from 'pusher-js'
 import { interval, Subscription } from 'rxjs';
+import { SharedService } from '../shared-service.service';
 
 @Component({
   selector: 'app-habitacion',
@@ -45,10 +46,16 @@ export class HabitacionComponent {
 
   loading = true;
   pusher: any;
+  private update: Subscription;
 
   private sensorDataSubscription: Subscription;
 
-  constructor(private sensorService : SensorService, private notificationService : NotificationService, private habitacionSerive : HabitacionesService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private sensorService : SensorService, private notificationService : NotificationService, private habitacionSerive : HabitacionesService, private route: ActivatedRoute, private router: Router, private ss: SharedService) 
+  {
+    this.update = this.ss.dataUpdated$.subscribe(() => {
+      this.ngOnInit();
+    });
+  }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id')!;
@@ -61,6 +68,7 @@ export class HabitacionComponent {
   ngOnDestroy() {
     if (this.sensorDataSubscription) {
       this.sensorDataSubscription.unsubscribe();
+      this.update.unsubscribe();
     }
   }
 
@@ -80,6 +88,7 @@ export class HabitacionComponent {
     this.notificationService.obtenerElementoPorId(this.id).subscribe(
       data => {
         this.notificaciones = data;
+        this.notificaciones.reverse();
         console.log(this.notificaciones);
       },
       error => {
