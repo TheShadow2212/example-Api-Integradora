@@ -27,6 +27,7 @@ export class HabitacionesComponent implements OnInit{
 
 constructor(private notificacionService : NotificationService,private habitacionSerive : HabitacionesService, private crud: CrudService, private router: Router, private ss: SharedService) {
     this.update = this.ss.dataUpdated$.subscribe(() => {
+      console.log('Actualizando datos');
       this.ngOnInit();
     });
    }

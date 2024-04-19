@@ -10,7 +10,6 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
   if (role_id) {
     headers = headers.set('Role-Id', role_id);
   }
-  console.log(headers);
   headers = headers.set('Accept', 'application/json');
   req = req.clone({ headers: headers });
   return next(req);
