@@ -31,6 +31,7 @@ export class HabitacionComponent {
   habitacion: Habitacion;
   notificaciones: Notificaction[] = [];
   sensores: Sensor[] = [];
+  alarma: boolean = true;
 
   sensor_temperatura: Sensor[] = [];
   sensor_humo: Sensor[] = [];
@@ -136,6 +137,22 @@ export class HabitacionComponent {
 
   modificarHabitacion() {
     this.router.navigate(['/habitacion/update', this.id]);
+  }
+
+  apagar_alarma(){
+   /* 
+    Ten en cuenta que este servicio no esta hecho, por lo que no se puede probar pero 
+    la idea es que el servicio cambie el booleano de la habitacion de la alarma para apagar la alarma
+    la id ya la toma solo es necesario hacer el servicio si se apago la alarma usar esta propiedad para quitar el boton this.alarma
+    
+   this.habitacionSerive.apagarAlarma(this.id).subscribe(
+      data => {
+        this.ngOnInit();
+      },
+      error => {
+        console.error('Error al obtener elementos', error);
+      }
+    );*/
   }
 
   stopLoading() {
