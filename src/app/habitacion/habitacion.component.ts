@@ -31,7 +31,7 @@ export class HabitacionComponent {
   habitacion: Habitacion;
   notificaciones: Notificaction[] = [];
   sensores: Sensor[] = [];
-  alarma: boolean = true;
+  alarma: boolean;
 
   sensor_temperatura: Sensor[] = [];
   sensor_humo: Sensor[] = [];
@@ -60,9 +60,12 @@ export class HabitacionComponent {
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id')!;
-    console.log(this.id);
+    this.iniciarPusher();
     this.obtenerDatos();
     this.obtenerNotificaciones();
+    if (this.sensorDataSubscription) {
+      this.sensorDataSubscription.unsubscribe();
+    }
     this.sensorDataSubscription = interval(4000).subscribe(() => this.obtenerSensorData());
   }
 
@@ -71,12 +74,40 @@ export class HabitacionComponent {
       this.sensorDataSubscription.unsubscribe();
       this.update.unsubscribe();
     }
+    if (this.pusher) {
+      this.pusher.disconnect();
+    }
+  }
+
+  iniciarPusher() {
+    this.pusher = new pusherJs('41abcfed77601deb48a5', {
+      cluster: 'us3',
+      forceTLS: false,
+      wsHost: '127.0.0.1',
+      wsPort: 6001,
+      enabledTransports: ['ws']
+    });
+    let channel = this.pusher.subscribe('channel-alarma');
+    channel.bind('App\\Events\\alarma', (data: any) => {
+      console.log('Alarma activa');
+      this.alarma = true;
+      if (!this.sensorDataSubscription || this.sensorDataSubscription.closed) {
+        this.ngOnInit();
+      }
+    });
+    this.pusher.connection.bind('connected', () => {
+      console.log('Conexión establecida');
+    });
   }
 
   obtenerDatos() {
     this.habitacionSerive.obtenerElementoPorId(Number(this.id)).subscribe(
       data => {
         this.habitacion = data;
+        console.log(this.habitacion);
+        if (this.habitacion.alarma == true) {
+          this.alarma = true;
+        }
         this.stopLoading();
       },
       error => {
@@ -99,6 +130,7 @@ export class HabitacionComponent {
   }
 
   obtenerSensorData() {
+    console.log('Obteniendo datos de sensores');
     this.sensorService.obtenerElementoPorId(this.id).subscribe(
       data => {
         this.sensores = data;
@@ -140,19 +172,14 @@ export class HabitacionComponent {
   }
 
   apagar_alarma(){
-   /* 
-    Ten en cuenta que este servicio no esta hecho, por lo que no se puede probar pero 
-    la idea es que el servicio cambie el booleano de la habitacion de la alarma para apagar la alarma
-    la id ya la toma solo es necesario hacer el servicio si se apago la alarma usar esta propiedad para quitar el boton this.alarma
-    
-   this.habitacionSerive.apagarAlarma(this.id).subscribe(
+    this.notificationService.apagarAlarma(Number(this.id)).subscribe(
       data => {
-        this.ngOnInit();
+        this.alarma = false;
       },
       error => {
-        console.error('Error al obtener elementos', error);
+        console.error('Error al apagar la alarma', error);
       }
-    );*/
+    );
   }
 
   stopLoading() {

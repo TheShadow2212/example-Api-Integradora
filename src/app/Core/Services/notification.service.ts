@@ -30,4 +30,10 @@ export class NotificationService {
     return this.http.put<any>(url, { status: 'read' });
   }
 
+  //Apagar alarma
+  apagarAlarma(id: number): Observable<any> {
+    const url = `${environment.API_BASE_URL}/alarma/` + id;
+    return this.http.put<any>(url, { status: 'read' });
+  }
+
 }

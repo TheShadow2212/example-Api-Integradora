@@ -35,7 +35,7 @@ export class DashboardComponent {
     this.pusher = new pusherJs('41abcfed77601deb48a5', {
       cluster: 'us3',
       forceTLS: false,
-      wsHost: '18.222.122.162',
+      wsHost: '127.0.0.1',
       wsPort: 6001,
       enabledTransports: ['ws']
     });

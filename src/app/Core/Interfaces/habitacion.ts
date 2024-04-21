@@ -3,4 +3,5 @@ export interface Habitacion {
     nombre: string;
     status: string;
     usuario: number;
+    alarma: boolean;
 }
