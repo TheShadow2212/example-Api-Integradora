@@ -83,16 +83,18 @@ export class HabitacionComponent {
     this.pusher = new pusherJs('41abcfed77601deb48a5', {
       cluster: 'us3',
       forceTLS: false,
-      wsHost: '127.0.0.1',
+      wsHost: '18.222.122.162',
       wsPort: 6001,
       enabledTransports: ['ws']
     });
     let channel = this.pusher.subscribe('channel-alarma');
     channel.bind('App\\Events\\alarma', (data: any) => {
-      console.log('Alarma activa');
-      this.alarma = true;
-      if (!this.sensorDataSubscription || this.sensorDataSubscription.closed) {
-        this.ngOnInit();
+      console.log(data);
+      if (data.id == this.id){
+        this.alarma = true;
+        if (!this.sensorDataSubscription || this.sensorDataSubscription.closed) {
+          this.ngOnInit();
+        }
       }
     });
     this.pusher.connection.bind('connected', () => {
