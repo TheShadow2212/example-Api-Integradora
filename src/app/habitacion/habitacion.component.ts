@@ -132,6 +132,13 @@ export class HabitacionComponent {
   }
 
   obtenerSensorData() {
+    this.sensor_humedad = [];
+    this.sensor_temperatura = [];
+    this.sensor_humo = [];
+    this.sensor_voltaje = [];
+    this.sensor_luz = [];
+    this.sensor_infrarrojo = [];
+    this.sensor_magnetico = [];
     console.log('Obteniendo datos de sensores');
     this.sensorService.obtenerElementoPorId(this.id).subscribe(
       data => {
@@ -150,7 +157,7 @@ export class HabitacionComponent {
             case "Voltaje":
               this.sensor_voltaje.push(sensor);
               break;
-            case "Luz":
+            case "FotoResistencia":
               this.sensor_luz.push(sensor);
               break;
             case "Infrarrojo":
