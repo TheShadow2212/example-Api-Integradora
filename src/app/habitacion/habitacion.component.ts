@@ -18,6 +18,7 @@ import { SpinnerComponent } from '../spinner/spinner.component';
 import pusherJs from 'pusher-js'
 import { interval, Subscription } from 'rxjs';
 import { SharedService } from '../shared-service.service';
+import { startWith } from 'rxjs';
 
 @Component({
   selector: 'app-habitacion',
@@ -66,7 +67,7 @@ export class HabitacionComponent {
     if (this.sensorDataSubscription) {
       this.sensorDataSubscription.unsubscribe();
     }
-    this.sensorDataSubscription = interval(4000).subscribe(() => this.obtenerSensorData());
+    this.sensorDataSubscription = interval(4000).pipe(startWith(0)).subscribe(() => this.obtenerSensorData());
   }
 
   ngOnDestroy() {
@@ -188,6 +189,10 @@ export class HabitacionComponent {
     setTimeout(() => {
       this.loading = false;
     }, 500);
+  }
+
+  historial(name: string) {
+    this.router.navigate(['/historial', name, this.id]);
   }
   
 }

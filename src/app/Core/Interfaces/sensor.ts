@@ -1,4 +1,7 @@
 export interface Sensor {
-    name: string;
-    data: string;
+  _id: string;
+  name: string;
+  data: string | null;
+  room_id: number;
+  date_time: string;
 }

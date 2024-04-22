@@ -23,13 +23,25 @@ import { Subscription } from 'rxjs';
 export class HabitacionesComponent implements OnInit{
  eliminar = new EventEmitter<number>();
  loading = true;
+ notificacion = false;
  private update: Subscription;
 
 constructor(private notificacionService : NotificationService,private habitacionSerive : HabitacionesService, private crud: CrudService, private router: Router, private ss: SharedService) {
-    this.update = this.ss.dataUpdated$.subscribe(() => {
-      console.log('Actualizando datos');
-      this.ngOnInit();
-    });
+    this.update = this.ss.dataUpdated$.subscribe(
+      (data: any) => {
+        console.log(data);
+        if (this.habitaciones.some(habitacion => habitacion.id == data.room_id)) {
+          this.ngOnInit();
+          this.notificacion = true;
+          setTimeout(() => {
+            this.notificacion = false;
+          }, 3000);
+        }
+      },
+      error => {
+        console.error('Error al obtener notificacion', error);
+      }
+    );
    }
   estado= 'Todas';
   mostrarConfirmacion: boolean = false;

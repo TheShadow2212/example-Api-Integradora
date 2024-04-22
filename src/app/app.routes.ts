@@ -9,7 +9,7 @@ export const routes: Routes = [
     { path: 'habitaciones/habitacion/:id', loadComponent:()=>import('./habitacion/habitacion.component').then(m=>m.HabitacionComponent),canActivate: [authGuard]},
     { path: 'habitacion/create' , loadComponent:()=>import('./habitaciones-create-form/habitaciones-create-form.component').then(m=>m.HabitacionesCreateFormComponent), canActivate: [authGuard]},
     { path: 'habitacion/update/:id', loadComponent:()=>import('./habitaciones-update-form/habitaciones-update-form.component').then(m=>m.HabitacionesUpdateFormComponent), canActivate: [authGuard]},
-
+    { path: 'historial/:nombre/:id', loadComponent:()=>import('./historial/historial.component').then(m=>m.HistorialComponent), canActivate: [authGuard]},
     { path: 'users', loadComponent:()=>import('./home/home.component').then(m=>m.HomeComponent), canActivate: [authGuard]},
     { path: 'user', loadComponent:()=>import('./user/user.component').then(m=>m.UserComponent), canActivate: [authGuard]},
     {path: 'usuarios/update/:id', loadComponent:()=>import('./usuario-update-form/usuario-update-form.component').then(m=>m.UsuarioUpdateFormComponent), canActivate: [authGuard]},

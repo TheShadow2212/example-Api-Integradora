@@ -1,6 +1,21 @@
 :host {
     font-family: "Open Sans", sans-serif;
 }
+
+.notification-true {
+    padding: 15px;
+    background-color: #f44336;
+    color: white;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: opacity 0.6s;
+}
+
+.notification-true p {
+    margin: 0;
+    font-weight: bold;
+}
+
 .container{
     width: 100%;
     display: flex;

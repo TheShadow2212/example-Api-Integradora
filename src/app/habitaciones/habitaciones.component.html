@@ -29,6 +29,9 @@
     <div class="activities-container">
         <button class="add-element" (click)="addRoom()">Agregar una habitacion</button>
         <div class="alerts-container">
+            <div *ngIf="notificacion" class="notification-true">
+                <p>Nueva alerta crítica recibida.</p>
+            </div>
             <div *ngFor="let notificacion of notificaciones" class="notificacion-container">
                 <div class="red"></div>
                 <div class="data-noti">

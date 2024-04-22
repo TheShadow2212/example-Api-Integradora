@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Data</th>
+                <th>Room ID</th>
+                <th>Date Time</th>
+            </tr>
+            <tr *ngFor="let item of historial">
+                <td>{{item.name}}</td>
+                <td>{{item.data}}</td>
+                <td>{{item.room_id}}</td>
+                <td>{{item.date_time}}</td>
+            </tr>
+        </table>
+    </div>
+    <button (click)="goToRoom()">Regresar a la habitación</button>
+</div>

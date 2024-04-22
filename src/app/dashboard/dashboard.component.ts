@@ -42,7 +42,7 @@ export class DashboardComponent {
     let channel = this.pusher.subscribe('channel-notifications');
     channel.bind('App\\Events\\CriticalNoti', (data: any) => {
       console.log('Evento recibido:', data);
-      this.ss.dataUpdated();
+      this.ss.dataUpdated(data);
     });
     this.pusher.connection.bind('connected', () => {
       console.log('Conexión establecida');

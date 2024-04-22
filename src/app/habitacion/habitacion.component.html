@@ -36,15 +36,18 @@
                 <div *ngFor="let sensor of sensor_humedad" class="sens_hume">
                     <p class="ttl-sens-hum"><i class="fa-solid fa-water cloud"></i>Humedad</p>
                     <p class="data-sens-1">{{sensor.data}}</p>
+                    <button class="btn-history" (click)="historial('Humedad')">Historial</button>
                 </div>
                 <div *ngFor="let sensor of sensor_voltaje" class="sens_volt">
                     <p class="ttl-sens-hum"><i class="fa-solid fa-bolt-lightning cloud"></i>Consumo de voltaje</p>
                     <p class="data-sens-1">{{sensor.data}}</p>
+                    <button class="btn-history" (click)="historial('Voltaje')">Historial</button>
                 </div>
                 <div *ngFor="let sensor of sensor_humo" class="sens_hum">
                     <p class="ttl-sens-hum"><i class="fa-brands fa-cloudversify cloud"></i>Sensor de humo</p>
                     <span *ngIf="sensor.data == '0'" class="material-symbols-outlined status-humo">detector_status</span>
                     <span *ngIf="sensor.data == '1'" class="material-symbols-outlined status-humo active">detector_smoke </span>
+                    <button class="btn-history" (click)="historial('Humo')">Historial</button>
                     <div class="data-humo-sens-cont">
                         <p class="data-humo-sens">{{sensor.data}}</p>
                     </div>
@@ -69,7 +72,8 @@
                     <div class="temp_data_container">
                             <p class="data_temp">{{sensor.data}}</p>
                             <p class="grade">°C</p>
-                    </div>
+                        </div>
+                        <button class="btn-history" (click)="historial('Temperatura')">Historial</button>
                 </div>
                 <div class="rectangle-bottom"></div>
             </div>
@@ -82,6 +86,7 @@
                         <p  *ngIf="sensor.data=='0'" class="symbol-bulb off"><i class="fa-regular fa-sun"></i></p>
                         <p  *ngIf="sensor.data=='1'" class="symbol-bulb on"><i class="fa-solid fa-sun"></i></p>
                         <p class="data-sensor-2">{{sensor.data}}</p>
+                        <button class="btn-history" (click)="historial('Infrarrojo')">Historial</button>
                     </div>
                 </div>
                 <div class="rectangle rectangle-center">
@@ -90,6 +95,7 @@
                         <p *ngIf="sensor.data=='0'" class="symbol-bulb off"><i class="fa-regular fa-lightbulb"></i></p>
                         <p *ngIf="sensor.data=='1'" class="symbol-bulb on"><i class="fa-solid fa-lightbulb"></i></p>
                         <p class="data-sensor-2">{{sensor.data}}</p>
+                        <button class="btn-history" (click)="historial('FotoResistencia')">Historial</button>
                     </div>
                 </div>
                 <div class="rectangle rectangle-right">
@@ -98,6 +104,8 @@
                         <p *ngIf="sensor.data=='0'" class="symbol-bulb off"><i class="fa-solid fa-magnet"></i></p>
                         <p *ngIf="sensor.data=='1'" class="symbol-bulb on"><i class="fa-solid fa-magnet"></i></p>
                         <p class="data-sensor-2">{{sensor.data}}</p>
+                        <button class="btn-history" (click)="historial('Magnetico')">Historial</button>
+
                     </div>
                 </div>
                 

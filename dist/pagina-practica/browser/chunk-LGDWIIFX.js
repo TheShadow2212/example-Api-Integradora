@@ -1,1 +1,0 @@
-import{Z as o,j as e}from"./chunk-XYLY6XG4.js";var s=(()=>{let t=class t{constructor(){this.dataUpdatedSource=new e,this.dataUpdated$=this.dataUpdatedSource.asObservable()}dataUpdated(){this.dataUpdatedSource.next()}};t.\u0275fac=function(r){return new(r||t)},t.\u0275prov=o({token:t,factory:t.\u0275fac,providedIn:"root"});let a=t;return a})();export{s as a};
