@@ -1,30 +1,18 @@
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { HabitacionesService } from '../Core/Services/habitaciones.service';
 import { NotificationService } from '../Core/Services/notification.service';
-import { SensorService } from '../Core/Services/sensor.service';
 import { HistorialService } from '../Core/Services/historial.service';
-
-import { ConfirmacionEliminacionComponent } from '../confirmacion-eliminacion/confirmacion-eliminacion.component';
-import { Habitacion } from '../Core/Interfaces/habitacion';
-import { Notificaction } from '../Core/Interfaces/notificaction';
 import { Sensor } from '../Core/Interfaces/sensor';
-
-import { CrudService } from '../Core/Services/crud.service';
 import { Router } from '@angular/router';
-import { RouterLink } from '@angular/router';
 import { SpinnerComponent } from '../spinner/spinner.component';
-import pusherJs from 'pusher-js'
-import { interval, Subscription } from 'rxjs';
 import { SharedService } from '../shared-service.service';
-import { startWith } from 'rxjs';
 
 @Component({
   selector: 'app-historial',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,SpinnerComponent],
   templateUrl: './historial.component.html',
   styleUrl: './historial.component.css'
 })

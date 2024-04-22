@@ -6,8 +6,11 @@
     height: 91vh;
 }
 
+.table-cntnt{
+    height: 80%;
+}
+
 .table-container {
-    margin-bottom: 20px;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -15,13 +18,28 @@
 
 table {
     width: 100%;
+    border-spacing: 0 15px;
+}
+
+th {
+    background-color: #abc2f4;
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+}
+
+.symbol{
+    margin-right: 10px;
 }
 
 button {
     padding: 10px 20px;
     border: none;
+    margin-top: 10px;
     border-radius: 5px;
-    background-color: #007bff;
+    background-color: #98b8fd;
     color: white;
     cursor: pointer;
 }
